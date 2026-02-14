@@ -2,9 +2,9 @@
 # define CONNECT_4_H
 
 # define ROW_MIN 6
-# define ROW_MAX 50
+# define ROW_MAX 42
 # define COL_MIN 7
-# define COL_MAX 50
+# define COL_MAX 42
 
 # include "libft/libft.h"
 # include <stdbool.h>
@@ -12,9 +12,9 @@
 
 typedef enum e_pos_state
 {
+	EMPTY,
 	BLUE,
-	RED,
-	EMPTY
+	RED
 }	t_pos_state;
 
 typedef enum e_state
@@ -38,5 +38,10 @@ typedef struct	s_data
 
 bool	game_over(const t_data *data);
 void	prompt_player(t_data *data);
+
+bool	col_full(long col, t_data *data);
+bool	col_empty(long col, t_data *data);
+bool	pop_coin(long col, t_data *data);
+bool	push_coin(long col, t_data *data);
 
 #endif /* CONNECT_4_H */
