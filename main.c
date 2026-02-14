@@ -22,9 +22,20 @@ bool	init_data(t_data *data, char **argv)
 {
 	data->row_count = ft_atoi_but_better(argv[1]);
 	data->col_count = ft_atoi_but_better(argv[2]);
-	data->grid = ft_calloc(data->row_count, data->col_count);
+	data->grid = ft_calloc(data->row_count, sizeof(int *));
 	if (!data->grid)
 		return (ft_printf(2, "Memory allocation failed\n"), false); 
+	for (long i = 0; i < data->row_count; i++) {
+		data->grid[i] = ft_calloc(data->col_count, sizeof(int));
+		if (!data->grid[i]) {
+			for (long j = 0; j < i; j++) {
+				free(data->grid[i]);
+			}
+			free(data->grid);
+			data->grid = NULL;
+			return (ft_printf(2, "Memory allocation failed\n"), false); 
+		}
+	}
 	return (true);
 }
 
@@ -39,7 +50,7 @@ void	print_grid(t_data *data)
 		cols = 0;
 		while (cols < data->col_count)
 		{
-			ft_printf(1, "%d\t", data->grid[rows + cols]);
+			ft_printf(1, "%d\t", data->grid[rows][cols]);
 			cols++;
 		}
 		ft_printf(1, "\n");

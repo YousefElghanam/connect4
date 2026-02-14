@@ -12,7 +12,7 @@ typedef struct	s_data
 {
 	long	row_count;
 	long	col_count;
-	long	*grid;
+	int **grid;
 }	t_data;
 
 #endif /* CONNECT_4_H */
