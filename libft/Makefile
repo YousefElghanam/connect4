@@ -1,42 +1,61 @@
-NAME = libft.a
+CC := cc
+CFLAGS := -Wall -Wextra -Werror
 
-CC = cc
+NAME := libft.a
 
-CFLAGS = -Wall -Wextra -Werror -g
+STDLIB := stdlib/ft_atoi.c stdlib/ft_calloc.c stdlib/ft_itoa.c stdlib/free_array.c stdlib/ft_free.c
 
-SOURCES =	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
-			ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c \
-			ft_memset.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_split.c \
-			ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c \
-			ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c \
-			ft_substr.c ft_tolower.c ft_toupper.c ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c \
-			ft_lstclear_bonus.c ft_lstdelone_bonus.c ft_lstiter_bonus.c ft_lstlast_bonus.c \
-			ft_lstmap_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c ft_printf.c ft_printf_utils.c \
-			ft_write_types.c ft_write_types2.c get_next_line.c get_next_line_utils.c \
-			ft_malloc.c ft_malloc_utils.c
+CTYPE := ctype/ft_isalpha.c ctype/ft_isdigit.c ctype/ft_toupper.c ctype/ft_isalnum.c \
+		 ctype/ft_isascii.c ctype/ft_isprint.c ctype/ft_tolower.c 
 
-OBJ_DIR = objects/
+MEM := mem/ft_memchr.c mem/ft_memcpy.c mem/ft_memset.c mem/ft_bzero.c mem/ft_memcmp.c mem/ft_memmove.c 
 
-OBJECTS = $(SOURCES:%.c=$(OBJ_DIR)%.o)
+STRING := string/ft_strdup.c string/ft_strlcpy.c string/ft_strncmp.c \
+		  string/ft_strchr.c string/ft_strrchr.c string/ft_strlcat.c string/ft_strlen.c \
+		  string/ft_strnstr.c string/ft_substr.c string/ft_strjoin.c string/ft_strtrim.c string/ft_split.c \
+		  string/ft_strmapi.c string/ft_striteri.c string/string.c string/stringlist.c \
+		  string/string_append.c string/string_split.c string/string_substr.c
+
+PUT := put/ft_putchar_fd.c put/ft_putstr_fd.c put/ft_putendl_fd.c put/ft_putnbr_fd.c \
+
+LIST := list/ft_lstnew.c list/ft_lstadd_front.c list/ft_lstsize.c list/ft_lstlast.c list/ft_lstadd_back.c \
+		list/ft_lstdelone.c list/ft_lstclear.c list/ft_lstiter.c list/ft_lstmap.c
+
+GNL := gnl/get_next_line.c
+
+PRINTF := ft_printf/char_str_handlers.c ft_printf/format_parser.c ft_printf/ft_itoa.c \
+		  ft_printf/ft_printf.c ft_printf/ft_itoa_base.c ft_printf/numeric_handlers.c \
+		  ft_printf/printing.c
+
+MISC := misc/pow.c
+
+SRC := $(STDLIB) $(CTYPE) $(MEM) $(STRING) $(PUT) $(LIST) $(GNL) $(PRINTF) $(MISC)
+
+OBJDIR := obj
+
+OBJ := $(patsubst %.c, $(OBJDIR)/%.o, $(SRC))
+DEPS := $(patsubst %.c, $(OBJDIR)/%.d, $(SRC))
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
-	ar rcs $(NAME) $(OBJECTS)
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 
-$(OBJ_DIR)%.o: %.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -o $@ -c $<
+-include $(DEPS)
 
-$(OBJ_DIR):
-	mkdir -p $@
+$(OBJDIR)/%.o: %.c
+	@mkdir -p $(@D)
+	$(CC) -MMD -MP $(CFLAGS) -Iincludes -c $< -o $@
 
 clean:
-	rm -rf $(OBJ_DIR)
+	rm -rf $(OBJDIR)
 
-fclean:
-	rm -rf $(OBJ_DIR)
-	rm -rf $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
+
+compile_commands:
+	bear -- $(MAKE) re
 
 .PHONY: all clean fclean re

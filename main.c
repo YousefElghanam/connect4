@@ -1,5 +1,6 @@
 #include "connect4.h"
-#include "libft/libft.h"
+#include "libft/includes/libft.h"
+#include <stdlib.h>
 #include <time.h>
 
 bool	validate_args(int argc, char **argv)
@@ -8,34 +9,29 @@ bool	validate_args(int argc, char **argv)
 	long	cols;
 
 	if (argc != 3)
-		return (ft_printf(2, "Accepts only exactly 2 arguments: \
+		return (ft_dprintf(2, "Accepts only exactly 2 arguments: \
 ./connect4 ROWS COLS\n"), false);
-	rows = ft_atoi_but_better(argv[1]);
-	cols = ft_atoi_but_better(argv[2]);
+	rows = ft_atoi(argv[1]);
+	cols = ft_atoi(argv[2]);
 	if (rows == (long)INT_MAX + 1 || rows < ROW_MIN || rows > ROW_MAX)
-		return (ft_printf(2, "Invalid row count. [%d - %d]\n", ROW_MIN, ROW_MAX), false);
+		return (ft_dprintf(2, "Invalid row count. [%d - %d]\n", ROW_MIN, ROW_MAX), false);
 	if (cols == (long)INT_MAX + 1 || cols < COL_MIN || cols > COL_MAX)
-		return (ft_printf(2, "Invalid col count. [%d - %d]\n", COL_MIN, COL_MAX), false);
+		return (ft_dprintf(2, "Invalid col count. [%d - %d]\n", COL_MIN, COL_MAX), false);
 	return (true);
-}
-
-static void ft_free(void **ptr) {
-	free(*ptr);
-	*ptr = NULL;
 }
 
 bool	init_data(t_data *data, char **argv)
 {
-	data->row_count = ft_atoi_but_better(argv[1]);
-	data->col_count = ft_atoi_but_better(argv[2]);
+	data->row_count = ft_atoi(argv[1]);
+	data->col_count = ft_atoi(argv[2]);
 	data->columns_to_check = ft_calloc(data->col_count, sizeof(bool));
 	if (!data->columns_to_check) {
-		return (ft_printf(2, "Memory allocation failed\n"), false); 
+		return (ft_dprintf(2, "Memory allocation failed\n"), false); 
 	}
 	data->grid = ft_calloc(data->row_count, sizeof(int *));
 	if (!data->grid) {
 		ft_free((void **)&data->columns_to_check);
-		return (ft_printf(2, "Memory allocation failed\n"), false); 
+		return (ft_dprintf(2, "Memory allocation failed\n"), false); 
 	}
 	for (long i = 0; i < data->row_count; i++) {
 		data->grid[i] = ft_calloc(data->col_count, sizeof(int));
@@ -45,12 +41,12 @@ bool	init_data(t_data *data, char **argv)
 			}
 			ft_free((void **)&data->grid);
 			ft_free((void **)&data->columns_to_check);
-			return (ft_printf(2, "Memory allocation failed\n"), false); 
+			return (ft_dprintf(2, "Memory allocation failed\n"), false); 
 		}
 	}
 	srand(time(0));
 	data->state = rand() % 2;
-	ft_printf(1, "init state to %d\n", data->state);
+	ft_dprintf(1, "init state to %d\n", data->state);
 	return (true);
 }
 
@@ -63,26 +59,26 @@ void	print_grid(t_data *data)
 	cols = 0;
 	while (cols < data->col_count) {
 		if (cols < 9)
-			ft_printf(1, " %d", cols + 1);
+			ft_dprintf(1, " %ld", cols + 1);
 		else
-			ft_printf(1, "%d", cols + 1);
+			ft_dprintf(1, "%ld", cols + 1);
 		cols++;
 	}
-	ft_printf(1, "\n");
+	ft_dprintf(1, "\n");
 	while (rows < data->row_count)
 	{
 		cols = 0;
 		while (cols < data->col_count)
 		{
 			if (data->grid[rows][cols] == RED)
-				ft_printf(1, "\033[41m  \033[0m", data->grid[rows][cols]);
+				ft_dprintf(1, "\033[41m  \033[0m");
 			else if (data->grid[rows][cols] == BLUE)
-				ft_printf(1, "\033[44m  \033[0m", data->grid[rows][cols]);
+				ft_dprintf(1, "\033[44m  \033[0m");
 			else if (data->grid[rows][cols] == EMPTY)
-				ft_printf(1, "\033[47m  \033[0m", data->grid[rows][cols]);
+				ft_dprintf(1, "\033[47m  \033[0m");
 			cols++;
 		}
-		ft_printf(1, "\n");
+		ft_dprintf(1, "\n");
 		rows++;
 	}
 }
@@ -99,19 +95,19 @@ void	free_data(t_data *data)
 
 bool	game_over(const t_data *data) {
 	if (data->state == ABORT) {
-		ft_printf(1, "ABORTED\n");
+		ft_dprintf(1, "ABORTED\n");
 		return (true);
 	}
 	if (data->state == AI_WIN) {
-		ft_printf(1, "AI WON\n");
+		ft_dprintf(1, "AI WON\n");
 		return (true);
 	}
 	if (data->state == PLAYER_WIN) {
-		ft_printf(1, "PLAYER WON\n");
+		ft_dprintf(1, "PLAYER WON\n");
 		return (true);
 	}
 	if (data->state == DRAW) {
-		ft_printf(1, "DRAW\n");
+		ft_dprintf(1, "DRAW\n");
 		return (true);
 	}
 	return (false);
@@ -136,7 +132,7 @@ int	main(int argc, char **argv)
 		{
 			// AI
 			t_ai_result result = ai_turn(&data, 0);
-			ft_printf(1, "Best column: %d\n", result.best_col);
+			ft_dprintf(1, "Best column: %ld\n", result.best_col);
 			data.state = PLAYER_TURN;
 		}
 		print_grid(&data);

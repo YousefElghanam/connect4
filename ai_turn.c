@@ -1,5 +1,5 @@
 #include "connect4.h"
-#include "libft/libft.h"
+#include "libft/includes/libft.h"
 
 static void check_columns(t_data *data, long col);
 static void fill_columns_to_check(t_data *data);

@@ -1,4 +1,5 @@
 #include "connect4.h"
+#include <stdlib.h>
 
 static bool	valid_line(char *line) {
 	if (!*line || *line == '\n') {
@@ -15,7 +16,7 @@ void	prompt_player(t_data *data) {
 	char	*line;
 	long	col;
 
-	ft_printf(1, "Enter col number\n");
+	ft_dprintf(1, "Enter col number\n");
 	while (true) {
 		line = get_next_line(0);
 		if (!line) {
@@ -24,14 +25,14 @@ void	prompt_player(t_data *data) {
 			return ;
 		}
 		if (!valid_line(line)) {
-			ft_printf(1, "Invalid input. Please enter a valid number\n");
+			ft_dprintf(1, "Invalid input. Please enter a valid number\n");
 			free(line);
 			continue ;
 		}
-		col = ft_atoi_but_better(line);
+		col = ft_atoi(line);
 		free(line);
 		if (col == (long)INT_MAX + 1 || col < 1 || col > data->col_count) {
-			ft_printf(1, "Invalid. Please enter column number [1 - %d]\n", ROW_MAX);
+			ft_dprintf(1, "Invalid. Please enter column number [1 - %d]\n", ROW_MAX);
 			continue ;
 		}
 		if (push_coin(col - 1, data)) {
