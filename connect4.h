@@ -24,6 +24,9 @@ typedef struct	s_data
 	long	col_count;
 	int **grid;
 	t_state state;
+	bool *columns_to_check;
 }	t_data;
+
+bool game_over(const t_data *data);
 
 #endif /* CONNECT_4_H */
