@@ -75,11 +75,11 @@ void	print_grid(t_data *data)
 		while (cols < data->col_count)
 		{
 			if (data->grid[rows][cols] == RED)
-				ft_printf(1, "\033[41m  \033[0m", data->grid[rows][cols]);
+				ft_printf(1, "\033[41m  \033[0m");
 			else if (data->grid[rows][cols] == BLUE)
-				ft_printf(1, "\033[44m  \033[0m", data->grid[rows][cols]);
+				ft_printf(1, "\033[44m  \033[0m");
 			else if (data->grid[rows][cols] == EMPTY)
-				ft_printf(1, "\033[47m  \033[0m", data->grid[rows][cols]);
+				ft_printf(1, "\033[47m  \033[0m");
 			cols++;
 		}
 		ft_printf(1, "\n");
@@ -97,7 +97,8 @@ void	free_data(t_data *data)
 	}
 }
 
-bool	game_over(const t_data *data) {
+bool	game_over(t_data *data, bool change_state) {
+	check_grid(data, change_state);
 	if (data->state == ABORT) {
 		ft_printf(1, "ABORTED\n");
 		return (true);
@@ -127,7 +128,7 @@ int	main(int argc, char **argv)
 		return (1);
 	print_grid(&data);
 	data.state = PLAYER_TURN;
-	while (!game_over(&data)) {
+	while (!game_over(&data, true)) {
 		if (data.state == PLAYER_TURN) {
 			prompt_player(&data);
 			data.state = AI_TURN;

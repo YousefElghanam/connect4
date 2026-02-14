@@ -6,7 +6,7 @@ OBJ_DIR = objects/
 
 CFLAGS = -Wall -Wextra -Werror -MMD -MP -g #-fsanitize=address,leak,undefined
 
-SRC = main.c prompt_player.c ai_turn.c grid_handling.c
+SRC = main.c prompt_player.c ai_turn.c grid_handling.c check_grid.c
 
 HEADERs = 
 

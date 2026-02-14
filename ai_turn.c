@@ -22,7 +22,7 @@ t_ai_result ai_turn(t_data *data, long depth) {
         best_result.best_col = i;
       }
       push_coin(i, data);
-      if (game_over(data)) {
+      if (check_grid_alg(data)) {
         pop_coin(i, data);
         if (data->state == PLAYER_TURN) {
           return (best_result);
