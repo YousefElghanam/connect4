@@ -1,54 +1,6 @@
 #include "connect4.h"
 #include "libft/includes/libft.h"
-#include <stdlib.h>
-#include <time.h>
-
-bool	validate_args(int argc, char **argv)
-{
-	long	rows;
-	long	cols;
-
-	if (argc != 3)
-		return (ft_dprintf(2, "Accepts only exactly 2 arguments: \
-./connect4 ROWS COLS\n"), false);
-	rows = ft_atoi(argv[1]);
-	cols = ft_atoi(argv[2]);
-	if (rows == (long)INT_MAX + 1 || rows < ROW_MIN || rows > ROW_MAX)
-		return (ft_dprintf(2, "Invalid row count. [%d - %d]\n", ROW_MIN, ROW_MAX), false);
-	if (cols == (long)INT_MAX + 1 || cols < COL_MIN || cols > COL_MAX)
-		return (ft_dprintf(2, "Invalid col count. [%d - %d]\n", COL_MIN, COL_MAX), false);
-	return (true);
-}
-
-bool	init_data(t_data *data, char **argv)
-{
-	data->row_count = ft_atoi(argv[1]);
-	data->col_count = ft_atoi(argv[2]);
-	data->columns_to_check = ft_calloc(data->col_count, sizeof(bool));
-	if (!data->columns_to_check) {
-		return (ft_dprintf(2, "Memory allocation failed\n"), false); 
-	}
-	data->grid = ft_calloc(data->row_count, sizeof(int *));
-	if (!data->grid) {
-		ft_free((void **)&data->columns_to_check);
-		return (ft_dprintf(2, "Memory allocation failed\n"), false); 
-	}
-	for (long i = 0; i < data->row_count; i++) {
-		data->grid[i] = ft_calloc(data->col_count, sizeof(int));
-		if (!data->grid[i]) {
-			for (long j = 0; j < i; j++) {
-				free(data->grid[i]);
-			}
-			ft_free((void **)&data->grid);
-			ft_free((void **)&data->columns_to_check);
-			return (ft_dprintf(2, "Memory allocation failed\n"), false); 
-		}
-	}
-	srand(time(0));
-	data->state = rand() % 2;
-	ft_dprintf(1, "init state to %d\n", data->state);
-	return (true);
-}
+#include <stdatomic.h>
 
 void	print_grid(t_data *data)
 {
@@ -83,17 +35,7 @@ void	print_grid(t_data *data)
 	}
 }
 
-void	free_data(t_data *data)
-{
-	if (data->grid) {
-		for (long i = 0; i < data->row_count; i++) {
-			free(data->grid[i]);
-		}
-		free(data->grid);
-	}
-}
-
-bool	game_over(t_data *data) {
+bool	game_over(const t_data *data) {
 	if (data->state == ABORT) {
 		ft_dprintf(1, "ABORTED\n");
 		return (true);
@@ -116,6 +58,7 @@ bool	game_over(t_data *data) {
 int	main(int argc, char **argv)
 {
 	t_data	data;
+	long row;
 
 	if (!validate_args(argc, argv))
 		return (1);
@@ -129,10 +72,13 @@ int	main(int argc, char **argv)
 		}
 		else if (data.state == AI_TURN)
 		{
-			// AI
 			t_ai_result result = ai_turn(&data, 0);
-			ft_dprintf(1, "Best column: %ld\n", result.best_col);
-			data.state = PLAYER_TURN;
+			row = push_coin(result.best_col, &data);
+			if (check_cell(row, result.best_col, &data)) {
+				data.state = AI_WIN;
+			} else {
+				data.state = PLAYER_TURN;
+			}
 		}
 		print_grid(&data);
 	}
