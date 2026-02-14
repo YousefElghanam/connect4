@@ -118,14 +118,15 @@ int	main(int argc, char **argv)
 	while (!game_over(&data)) {
 		if (data.state == PLAYER_TURN) {
 			prompt_player(&data);
-			// prompt for input
-			// data.state = AI_TURN;
+			data.state = AI_TURN;
 		}
-		// else
-		// {
-		// 	// AI
-		// 	data.state = PLAYER_TURN;
-		// }
+		else
+		{
+			// AI
+			t_ai_result result = ai_turn(&data, 0);
+			ft_printf(1, "Best column: %d\n", result.best_col);
+			data.state = PLAYER_TURN;
+		}
 	}
 	free_data(&data);
 }

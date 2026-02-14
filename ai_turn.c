@@ -4,12 +4,6 @@
 static void check_columns(t_data *data, long col);
 static void fill_columns_to_check(t_data *data);
 
-typedef struct s_ai_result {
-  long best_col;
-  long best_depth;
-  long win_conditions;
-} t_ai_result;
-
 t_ai_result ai_turn(t_data *data, long depth) {
   fill_columns_to_check(data);
 
@@ -53,7 +47,7 @@ t_ai_result ai_turn(t_data *data, long depth) {
 static void fill_columns_to_check(t_data *data) {
   ft_bzero(data->columns_to_check, data->col_count * sizeof(bool));
   for (long col = 0; col < data->col_count; col++) {
-    if (data->grid[col] != 0) {
+    if (data->grid[0][col] != 0) {
       continue;
     }
 
@@ -64,12 +58,12 @@ static void fill_columns_to_check(t_data *data) {
 static void check_columns(t_data *data, long col) {
     for (long offset = 0; offset < 4; offset++) {
       for (long row = 0; row < data->row_count; row++) {
-        if (col - offset >= 0 && data->grid[col - offset][row]) {
+        if (col - offset >= 0 && data->grid[row][col - offset]) {
           data->columns_to_check[col] = true;
           return;
         }
 
-        if (col + offset < data->col_count && data->grid[col + offset][row]) {
+        if (col + offset < data->col_count && data->grid[row][col + offset]) {
           data->columns_to_check[col] = true;
           return;
         }

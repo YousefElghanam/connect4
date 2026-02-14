@@ -36,7 +36,14 @@ typedef struct	s_data
 	bool	*columns_to_check;
 }	t_data;
 
+typedef struct s_ai_result {
+  long best_col;
+  long best_depth;
+  long win_conditions;
+} t_ai_result;
+
 bool	game_over(const t_data *data);
 void	prompt_player(t_data *data);
+t_ai_result ai_turn(t_data *data, long depth);
 
 #endif /* CONNECT_4_H */
