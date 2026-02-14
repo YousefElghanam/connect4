@@ -30,7 +30,7 @@ void	prompt_player(t_data *data) {
 		}
 		col = ft_atoi_but_better(line);
 		free(line);
-		if (col == (long)INT_MAX + 1 || col < 1 || col > data->col_count + 1) {
+		if (col == (long)INT_MAX + 1 || col < 1 || col > data->col_count) {
 			ft_printf(1, "Invalid. Please enter column number [1 - %d]\n", ROW_MAX);
 			continue ;
 		}

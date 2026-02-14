@@ -60,10 +60,15 @@ void	print_grid(t_data *data)
 	long	cols;
 
 	rows = 0;
-	cols = 1;
-	// while (cols < data->col_count) {
-	// 	if (cols)
-	// }
+	cols = 0;
+	while (cols < data->col_count) {
+		if (cols < 9)
+			ft_printf(1, " %d", cols + 1);
+		else
+			ft_printf(1, "%d", cols + 1);
+		cols++;
+	}
+	ft_printf(1, "\n");
 	while (rows < data->row_count)
 	{
 		cols = 0;
@@ -92,9 +97,7 @@ void	free_data(t_data *data)
 	}
 }
 
-bool game_over(const t_data *data) {
-	(void)data;
-	// Print result if return value is true
+bool	game_over(const t_data *data) {
 	if (data->state == ABORT) {
 		ft_printf(1, "ABORTED\n");
 		return (true);
