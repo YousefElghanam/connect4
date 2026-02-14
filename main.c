@@ -12,10 +12,10 @@ bool	validate_args(int argc, char **argv)
 ./connect4 ROWS COLS\n"), false);
 	rows = ft_atoi_but_better(argv[1]);
 	cols = ft_atoi_but_better(argv[2]);
-	if (rows == (long)INT_MAX + 1 || rows < 6 || rows > ROW_LIMIT)
-		return (ft_printf(2, "Invalid row count. [6 - %d]\n", ROW_LIMIT), false);
-	if (cols == (long)INT_MAX + 1 || cols < 7 || cols > COL_LIMIT)
-		return (ft_printf(2, "Invalid col count. [7 - %d]\n", COL_LIMIT), false);
+	if (rows == (long)INT_MAX + 1 || rows < ROW_MIN || rows > ROW_MAX)
+		return (ft_printf(2, "Invalid row count. [%d - %d]\n", ROW_MIN, ROW_MAX), false);
+	if (cols == (long)INT_MAX + 1 || cols < COL_MIN || cols > COL_MAX)
+		return (ft_printf(2, "Invalid col count. [%d - %d]\n", COL_MIN, COL_MAX), false);
 	return (true);
 }
 
@@ -39,6 +39,7 @@ bool	init_data(t_data *data, char **argv)
 	}
 	srand(time(0));
 	data->state = rand() % 2;
+	ft_printf(1, "init state to %d\n", data->state);
 	return (true);
 }
 
@@ -74,6 +75,22 @@ void	free_data(t_data *data)
 bool game_over(const t_data *data) {
 	(void)data;
 	// Print result if return value is true
+	if (data->state == ABORT) {
+		ft_printf(1, "ABORTED\n");
+		return (true);
+	}
+	if (data->state == AI_WIN) {
+		ft_printf(1, "AI WON\n");
+		return (true);
+	}
+	if (data->state == PLAYER_WIN) {
+		ft_printf(1, "PLAYER WON\n");
+		return (true);
+	}
+	if (data->state == DRAW) {
+		ft_printf(1, "DRAW\n");
+		return (true);
+	}
 	return (false);
 }
 
@@ -86,14 +103,18 @@ int	main(int argc, char **argv)
 	if (!init_data(&data, argv))
 		return (1);
 	print_grid(&data);
-	while (game_over(&data)) {
+	data.state = PLAYER_TURN;
+	while (!game_over(&data)) {
 		if (data.state == PLAYER_TURN) {
+			prompt_player(&data);
 			// prompt for input
-			data.state = AI_TURN;
-		} else {
-			// AI
-			data.state = PLAYER_TURN;
+			// data.state = AI_TURN;
 		}
+		// else
+		// {
+		// 	// AI
+		// 	data.state = PLAYER_TURN;
+		// }
 	}
 	free_data(&data);
 }

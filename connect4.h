@@ -1,12 +1,21 @@
 #ifndef CONNECT_4_H
 # define CONNECT_4_H
 
-# define ROW_LIMIT 50
-# define COL_LIMIT 50
+# define ROW_MIN 6
+# define ROW_MAX 50
+# define COL_MIN 7
+# define COL_MAX 50
 
 # include "libft/libft.h"
 # include <stdbool.h>
 # include <limits.h>
+
+typedef enum e_pos_state
+{
+	BLUE,
+	RED,
+	EMPTY
+}	t_pos_state;
 
 typedef enum e_state
 {
@@ -22,8 +31,10 @@ typedef struct	s_data
 {
 	long	row_count;
 	long	col_count;
-	int **grid;
-	t_state state;
+	int		**grid;
+	t_state	state;
 }	t_data;
+
+void	prompt_player(t_data *data);
 
 #endif /* CONNECT_4_H */
