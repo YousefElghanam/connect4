@@ -32,7 +32,7 @@ bool	pop_coin(long col, t_data *data) {
 	return (false);
 }
 
-bool	push_coin(long col, t_data *data) {
+long	push_coin(long col, t_data *data) {
 	long	row;
 
 	row = data->row_count - 1;
@@ -49,5 +49,5 @@ bool	push_coin(long col, t_data *data) {
 	else
 		ft_dprintf(2, "UNEXPECTED ERROR WHILE TRYING TO PUSH COIN\
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-	return (false);
+	return (row);
 }

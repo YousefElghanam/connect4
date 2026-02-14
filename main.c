@@ -93,7 +93,7 @@ void	free_data(t_data *data)
 	}
 }
 
-bool	game_over(const t_data *data) {
+bool	game_over(t_data *data) {
 	if (data->state == ABORT) {
 		ft_dprintf(1, "ABORTED\n");
 		return (true);
@@ -126,7 +126,6 @@ int	main(int argc, char **argv)
 	while (!game_over(&data)) {
 		if (data.state == PLAYER_TURN) {
 			prompt_player(&data);
-			data.state = AI_TURN;
 		}
 		else if (data.state == AI_TURN)
 		{

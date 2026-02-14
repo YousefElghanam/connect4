@@ -1,6 +1,7 @@
 #ifndef CONNECT_4_H
 # define CONNECT_4_H
 
+# define MATCHES_TO_WIN 4
 # define ROW_MIN 6
 # define ROW_MAX 42
 # define COL_MIN 7
@@ -42,13 +43,16 @@ typedef struct s_ai_result {
   long win_conditions;
 } t_ai_result;
 
-bool	game_over(const t_data *data);
+bool	check_cell(long row, long col, t_data *data);
+bool	check_grid_alg(t_data *data);
+void	check_grid(t_data *data);
+bool	game_over(t_data *data);
 void	prompt_player(t_data *data);
 t_ai_result ai_turn(t_data *data, long depth);
 
 bool	col_full(long col, t_data *data);
 bool	col_empty(long col, t_data *data);
 bool	pop_coin(long col, t_data *data);
-bool	push_coin(long col, t_data *data);
+long	push_coin(long col, t_data *data);
 
 #endif /* CONNECT_4_H */
