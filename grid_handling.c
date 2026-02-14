@@ -23,7 +23,6 @@ bool	pop_coin(long col, t_data *data) {
 		return (ft_dprintf(2, "Can't pop, column not empty\n"), true);
 	while (row < data->row_count && data->grid[row][col] == EMPTY)
 		row++;
-	// row--;
 	if (data->state == PLAYER_TURN || data->state == AI_TURN)
 		data->grid[row][col] = EMPTY;
 	else
