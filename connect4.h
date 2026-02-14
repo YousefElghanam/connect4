@@ -6,7 +6,7 @@
 # define COL_MIN 7
 # define COL_MAX 42
 
-# include "libft/libft.h"
+# include "libft/includes/libft.h"
 # include <stdbool.h>
 # include <limits.h>
 

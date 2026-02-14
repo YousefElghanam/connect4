@@ -1,0 +1,13 @@
+BasedOnStyle: Chromium
+AlignArrayOfStructures: Right
+AllowShortBlocksOnASingleLine: Empty
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+AlwaysBreakBeforeMultilineStrings: false
+IndentPPDirectives: AfterHash
+NamespaceIndentation: All
+PointerAlignment: Right
+SpacesInAngles: Always
+TabWidth: 4
+IndentWidth: 4
+UseTab: Always
