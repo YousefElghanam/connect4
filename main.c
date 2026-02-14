@@ -126,19 +126,20 @@ int	main(int argc, char **argv)
 	if (!init_data(&data, argv))
 		return (1);
 	print_grid(&data);
-	data.state = AI_TURN;
+	data.state = PLAYER_TURN;
 	while (!game_over(&data)) {
-		if (data.state == AI_TURN) {
+		if (data.state == PLAYER_TURN) {
 			prompt_player(&data);
-			// prompt for input
-			// data.state = AI_TURN;
+			data.state = AI_TURN;
+		}
+		else if (data.state == AI_TURN)
+		{
+			// AI
+			t_ai_result result = ai_turn(&data, 0);
+			ft_printf(1, "Best column: %d\n", result.best_col);
+			data.state = PLAYER_TURN;
 		}
 		print_grid(&data);
-		// else
-		// {
-		// 	// AI
-		// 	data.state = PLAYER_TURN;
-		// }
 	}
 	free_data(&data);
 }

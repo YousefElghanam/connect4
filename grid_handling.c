@@ -1,4 +1,5 @@
 #include "connect4.h"
+#include "libft/libft.h"
 
 bool	col_full(long col, t_data *data) {
 	if (data->grid[0][col] != EMPTY) {
@@ -22,7 +23,7 @@ bool	pop_coin(long col, t_data *data) {
 		return (ft_printf(2, "Can't pop, column not empty\n"), true);
 	while (row < data->row_count && data->grid[row][col] == EMPTY)
 		row++;
-	row--;
+	// row--;
 	if (data->state == PLAYER_TURN || data->state == AI_TURN)
 		data->grid[row][col] = EMPTY;
 	else
@@ -34,13 +35,13 @@ bool	pop_coin(long col, t_data *data) {
 bool	push_coin(long col, t_data *data) {
 	long	row;
 
-	row = 0;
-	if (col_full(col, data))
+	row = data->row_count - 1;
+	while (row >= 0 && data->grid[row][col] != EMPTY) {
+		row--;
+	}
+	if (row == -1)
 		return (ft_printf(2, "Can't push, column is full\n"), true);
-	while (row < data->row_count && data->grid[row][col] == EMPTY)
-		row++;
-	row--;
-	ft_printf(1, "detected empty row at %d\n", (int)row);
+	// ft_printf(1, "detected empty row at %d\n", (int)row);
 	if (data->state == PLAYER_TURN)
 		data->grid[row][col] = BLUE;
 	else if (data->state == AI_TURN)
