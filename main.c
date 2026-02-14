@@ -1,5 +1,6 @@
 #include "connect4.h"
 #include "libft/libft.h"
+#include <time.h>
 
 bool	validate_args(int argc, char **argv)
 {
@@ -11,10 +12,10 @@ bool	validate_args(int argc, char **argv)
 ./connect4 ROWS COLS\n"), false);
 	rows = ft_atoi_but_better(argv[1]);
 	cols = ft_atoi_but_better(argv[2]);
-	if (rows == (long)INT_MAX + 1 || rows < 6 || rows > 50)
-		return (ft_printf(2, "Invalid row count. [6 - 50]\n"), false);
-	if (cols == (long)INT_MAX + 1 || cols < 7 || cols > 50)
-		return (ft_printf(2, "Invalid col count. [7 - 50]\n"), false);
+	if (rows == (long)INT_MAX + 1 || rows < 6 || rows > ROW_LIMIT)
+		return (ft_printf(2, "Invalid row count. [6 - %d]\n", ROW_LIMIT), false);
+	if (cols == (long)INT_MAX + 1 || cols < 7 || cols > COL_LIMIT)
+		return (ft_printf(2, "Invalid col count. [7 - %d]\n", COL_LIMIT), false);
 	return (true);
 }
 
@@ -36,6 +37,8 @@ bool	init_data(t_data *data, char **argv)
 			return (ft_printf(2, "Memory allocation failed\n"), false); 
 		}
 	}
+	srand(time(0));
+	data->state = rand() % 2;
 	return (true);
 }
 
@@ -60,16 +63,37 @@ void	print_grid(t_data *data)
 
 void	free_data(t_data *data)
 {
-	free(data->grid);
+	if (data->grid) {
+		for (long i = 0; i < data->row_count; i++) {
+			free(data->grid[i]);
+		}
+		free(data->grid);
+	}
+}
+
+bool game_over(const t_data *data) {
+	(void)data;
+	// Print result if return value is true
+	return (false);
 }
 
 int	main(int argc, char **argv)
 {
 	t_data	data;
+
 	if (!validate_args(argc, argv))
 		return (1);
 	if (!init_data(&data, argv))
 		return (1);
 	print_grid(&data);
+	while (game_over(&data)) {
+		if (data.state == PLAYER_TURN) {
+			// prompt for input
+			data.state = AI_TURN;
+		} else {
+			// AI
+			data.state = PLAYER_TURN;
+		}
+	}
 	free_data(&data);
 }

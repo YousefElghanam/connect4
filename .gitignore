@@ -58,3 +58,4 @@ dkms.conf
 
 .cache/
 connect4
+./compile_commands.json

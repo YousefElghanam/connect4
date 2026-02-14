@@ -8,11 +8,22 @@
 # include <stdbool.h>
 # include <limits.h>
 
+typedef enum e_state
+{
+	PLAYER_TURN,
+	AI_TURN,
+	PLAYER_WIN,
+	AI_WIN,
+	DRAW,
+	ABORT
+}	t_state;
+
 typedef struct	s_data
 {
 	long	row_count;
 	long	col_count;
 	int **grid;
+	t_state state;
 }	t_data;
 
 #endif /* CONNECT_4_H */
