@@ -14,6 +14,7 @@ t_ai_result ai_turn(t_data *data, long depth) {
 
   t_ai_result cur_result = best_result;
 
+  long	row;
   for (long i = 0; i < data->col_count; i++) {
     if (data->columns_to_check[i]) {
       cur_result.win_conditions = 0;
@@ -21,8 +22,8 @@ t_ai_result ai_turn(t_data *data, long depth) {
       if (best_result.best_col == -1) {
         best_result.best_col = i;
       }
-      push_coin(i, data);
-      if (check_grid_alg(data)) {
+      row = push_coin(i, data);
+      if (check_cell(row, i, data)) {
         pop_coin(i, data);
         if (data->state == PLAYER_TURN) {
           return (best_result);

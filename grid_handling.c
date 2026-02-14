@@ -32,7 +32,7 @@ bool	pop_coin(long col, t_data *data) {
 	return (false);
 }
 
-bool	push_coin(long col, t_data *data) {
+long	push_coin(long col, t_data *data) {
 	long	row;
 
 	row = data->row_count - 1;
@@ -40,7 +40,7 @@ bool	push_coin(long col, t_data *data) {
 		row--;
 	}
 	if (row == -1)
-		return (ft_printf(2, "Can't push, column is full\n"), true);
+		return (ft_printf(2, "Can't push, column is full\n"), -1);
 	// ft_printf(1, "detected empty row at %d\n", (int)row);
 	if (data->state == PLAYER_TURN)
 		data->grid[row][col] = BLUE;
@@ -49,5 +49,5 @@ bool	push_coin(long col, t_data *data) {
 	else
 		ft_printf(2, "UNEXPECTED ERROR WHILE TRYING TO PUSH COIN\
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-	return (false);
+	return (row);
 }

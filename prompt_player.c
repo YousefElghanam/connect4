@@ -14,6 +14,7 @@ static bool	valid_line(char *line) {
 void	prompt_player(t_data *data) {
 	char	*line;
 	long	col;
+	long	row;
 
 	ft_printf(1, "Enter col number\n");
 	while (true) {
@@ -34,9 +35,13 @@ void	prompt_player(t_data *data) {
 			ft_printf(1, "Invalid. Please enter column number [1 - %d]\n", ROW_MAX);
 			continue ;
 		}
-		if (push_coin(col - 1, data)) {
+		row = push_coin(col - 1, data);
+		if (row == -1)
 			continue ;
-		}
+		if (check_cell(row, col - 1, data))
+			data->state = PLAYER_WIN;
+		else
+			data->state = AI_TURN;
 		return ;
 	}
 }

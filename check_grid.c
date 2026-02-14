@@ -1,63 +1,28 @@
 #include "connect4.h"
 
-bool	horizontal_check(long row, long col, const t_data *data) {
-	long	color;
+// bool	horizontal_check(long row, long col, const t_data *data) {
+// 	long	color;
 
-	color = data->grid[row][col];
-	for (long i = 1; i < MATCHES_TO_WIN && col + i < data->col_count; i++) {
-		if (data->grid[row][col + i] != color)
-			return (false);
-	}
-	ft_printf(1, "horizontal checked true\n");
-	return (true);
-}
+// 	color = data->grid[row][col];
+// 	for (long i = 1; i < MATCHES_TO_WIN && col + i < data->col_count; i++) {
+// 		if (data->grid[row][col + i] != color)
+// 			return (false);
+// 	}
+// 	ft_printf(1, "horizontal checked true\n");
+// 	return (true);
+// }
 
-bool	vertical_check(long row, long col, const t_data *data) {
-	long	color;
+// bool	vertical_check(long row, long col, const t_data *data) {
+// 	long	color;
 
-	color = data->grid[row][col];
-	for (long i = 1; i < MATCHES_TO_WIN && row + i < data->row_count; i++) {
-		if (data->grid[row + i][col] != color)
-			return (false);
-	}
-	ft_printf(1, "vertical checked true\n");
-	return (true);
-}
-
-void	check_grid(t_data *data, bool change_state) {
-	for (long row = 0; row < data->row_count - MATCHES_TO_WIN + 1; row++) {
-		for (long col = 0; col < data->col_count; col++) {
-			if (data->grid[row][col] == EMPTY)
-				continue ;
-			if (horizontal_check(row, col, data) || vertical_check(row, col, data)) {
-				if (change_state) {
-					if (data->state == PLAYER_TURN)
-						data->state = AI_WIN;
-					else if (data->state == AI_TURN)
-						data->state = PLAYER_WIN;
-				}
-			}
-			if (data->state != AI_TURN && data->state != PLAYER_TURN)
-				return ;
-		}
-	}
-	// for (long row = 0; row < data->row_count; row++) {
-	// 	for (long col = 0; col < data->col_count - MATCHES_TO_WIN + 1; col++) {
-	// 		if (data->grid[row][col] == EMPTY)
-	// 			continue ;
-	// 		if (horizontal_check(row, col, data) || vertical_check(row, col, data)) {
-	// 			if (change_state) {
-	// 				if (data->state == PLAYER_TURN)
-	// 					data->state = AI_WIN;
-	// 				else if (data->state == AI_TURN)
-	// 					data->state = PLAYER_WIN;
-	// 			}
-	// 		}
-	// 		if (data->state != AI_TURN && data->state != PLAYER_TURN)
-	// 			return ;
-	// 	}
-	// }
-}
+// 	color = data->grid[row][col];
+// 	for (long i = 1; i < MATCHES_TO_WIN && row + i < data->row_count; i++) {
+// 		if (data->grid[row + i][col] != color)
+// 			return (false);
+// 	}
+// 	ft_printf(1, "vertical checked true\n");
+// 	return (true);
+// }
 
 bool	in_bound(long row, long col, t_data *data) {
 	if (row >= 0 && row < data->row_count
@@ -105,9 +70,9 @@ bool	win_up(long row, long col, t_data *data) {
 	i = 1;
 	color = data->grid[row][col];
 	while (i < MATCHES_TO_WIN) {
-		if (!in_bound(row, col + i, data))
+		if (!in_bound(row - i, col, data))
 			return (false);
-		if (data->grid[row][col + i] != color)
+		if (data->grid[row - i][col] != color)
 			return (false);
 		i++;
 	}
@@ -121,7 +86,9 @@ bool	win_down(long row, long col, t_data *data) {
 	i = 1;
 	color = data->grid[row][col];
 	while (i < MATCHES_TO_WIN) {
-		if (data->grid[row][col + i] != color)
+		if (!in_bound(row + i, col, data))
+			return (false);
+		if (data->grid[row + i][col] != color)
 			return (false);
 		i++;
 	}
@@ -137,14 +104,31 @@ bool	check_cell(long row, long col, t_data *data) {
 	return (false);
 }
 
-bool	check_grid_alg(t_data *data) {
-	for (long row = 0; row < data->row_count - MATCHES_TO_WIN + 1; row++) {
-		for (long col = 0; col < data->col_count; col++) {
-			if (data->grid[row][col] == EMPTY)
-				continue ;
-			if (horizontal_check(row, col, data) || vertical_check(row, col, data))
-				return (true);
-		}
-	}
-	return (false);
-}
+// void	check_grid(t_data *data) {
+// 	for (long row = 0; row < data->row_count; row++) {
+// 		for (long col = 0; col < data->col_count; col++) {
+// 			if (data->grid[row][col] == EMPTY)
+// 				continue ;
+// 			if (check_cell(row, col, data)) {
+// 				if (data->state == PLAYER_TURN)
+// 					data->state = AI_WIN;
+// 				else if (data->state == AI_TURN)
+// 					data->state = PLAYER_WIN;
+// 			}
+// 			if (data->state != AI_TURN && data->state != PLAYER_TURN)
+// 				return ;
+// 		}
+// 	}
+// }
+
+// bool	check_grid_alg(t_data *data) {
+// 	for (long row = 0; row < data->row_count; row++) {
+// 		for (long col = 0; col < data->col_count; col++) {
+// 			if (data->grid[row][col] == EMPTY)
+// 				continue ;
+// 			if (check_cell(row, col, data))
+// 				return (true);
+// 		}
+// 	}
+// 	return (false);
+// }
