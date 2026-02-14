@@ -1,2 +1,2 @@
 # connect4
-A simple in-terminal connect4 game in C
+A simple in-terminal connect4 game written in C
