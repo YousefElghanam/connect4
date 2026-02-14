@@ -16,19 +16,19 @@ t_ai_result ai_turn(t_data *data, long depth) {
 
   for (long i = 0; i < data->col_count; i++) {
     if (data->columns_to_check[i]) {
-      ft_printf(1, "Checking column: %d\n", i);
       cur_result.win_conditions = 0;
       cur_result.best_col = i;
       if (best_result.best_col == -1) {
         best_result.best_col = i;
       }
-      // put_value in spot
+      push_coin(i, data);
       if (game_over(data)) {
-        // remove item put in that spot
+        pop_coin(i, data);
         if (data->state == PLAYER_TURN) {
           return (best_result);
         } else if (data->state == AI_TURN) {
           cur_result.win_conditions++;
+          continue;
         }
       }
       else if (depth < 5) {
@@ -38,10 +38,11 @@ t_ai_result ai_turn(t_data *data, long depth) {
             (cur_result.best_depth == best_result.best_depth &&
              cur_result.win_conditions > best_result.win_conditions)) {
           best_result = cur_result;
+          best_result.best_col = i;
         }
         data->state = !data->state;
       }
-      // remove item put in that spot
+      pop_coin(i, data);
     }
   }
 
@@ -51,7 +52,7 @@ t_ai_result ai_turn(t_data *data, long depth) {
 static void fill_columns_to_check(t_data *data) {
   ft_bzero(data->columns_to_check, data->col_count * sizeof(bool));
   for (long col = 0; col < data->col_count; col++) {
-    if (data->grid[0][col] != 0) {
+    if (data->grid[0][col] != EMPTY) {
       continue;
     }
 
