@@ -19,21 +19,32 @@ bool	validate_args(int argc, char **argv)
 	return (true);
 }
 
+static void ft_free(void **ptr) {
+	free(*ptr);
+	*ptr = NULL;
+}
+
 bool	init_data(t_data *data, char **argv)
 {
 	data->row_count = ft_atoi_but_better(argv[1]);
 	data->col_count = ft_atoi_but_better(argv[2]);
-	data->grid = ft_calloc(data->row_count, sizeof(int *));
-	if (!data->grid)
+	data->columns_to_check = ft_calloc(data->col_count, sizeof(bool));
+	if (!data->columns_to_check) {
 		return (ft_printf(2, "Memory allocation failed\n"), false); 
+	}
+	data->grid = ft_calloc(data->row_count, sizeof(int *));
+	if (!data->grid) {
+		ft_free((void **)&data->columns_to_check);
+		return (ft_printf(2, "Memory allocation failed\n"), false); 
+	}
 	for (long i = 0; i < data->row_count; i++) {
 		data->grid[i] = ft_calloc(data->col_count, sizeof(int));
 		if (!data->grid[i]) {
 			for (long j = 0; j < i; j++) {
 				free(data->grid[i]);
 			}
-			free(data->grid);
-			data->grid = NULL;
+			ft_free((void **)&data->grid);
+			ft_free((void **)&data->columns_to_check);
 			return (ft_printf(2, "Memory allocation failed\n"), false); 
 		}
 	}

@@ -26,9 +26,9 @@ bool	col_empty(long col, t_data *data) {
 	return (false);
 }
 
-bool	pop_coin(long col, t_data *data) {
-	return (false);
-}
+// bool	pop_coin(long col, t_data *data) {
+// 	return (false);
+// }
 
 bool	push_coin(long col, t_data *data) {
 	if (col_full(col, data)) {
