@@ -8,7 +8,7 @@ t_ai_result ai_turn(t_data *data, long depth) {
   fill_columns_to_check(data);
 
   t_ai_result best_result;
-  best_result.best_col = 0;
+  best_result.best_col = -1;
   best_result.best_depth = depth;
   best_result.win_conditions = 0;
 
@@ -16,8 +16,12 @@ t_ai_result ai_turn(t_data *data, long depth) {
 
   for (long i = 0; i < data->col_count; i++) {
     if (data->columns_to_check[i]) {
+      ft_printf(1, "Checking column: %d\n", i);
       cur_result.win_conditions = 0;
       cur_result.best_col = i;
+      if (best_result.best_col == -1) {
+        best_result.best_col = i;
+      }
       // put_value in spot
       if (game_over(data)) {
         // remove item put in that spot
@@ -27,7 +31,7 @@ t_ai_result ai_turn(t_data *data, long depth) {
           cur_result.win_conditions++;
         }
       }
-      else if (depth < 10) {
+      else if (depth < 5) {
         data->state = !data->state;
         cur_result = ai_turn(data, depth + 1);
         if (cur_result.best_depth > best_result.best_depth ||

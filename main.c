@@ -60,12 +60,21 @@ void	print_grid(t_data *data)
 	long	cols;
 
 	rows = 0;
+	cols = 1;
+	// while (cols < data->col_count) {
+	// 	if (cols)
+	// }
 	while (rows < data->row_count)
 	{
 		cols = 0;
 		while (cols < data->col_count)
 		{
-			ft_printf(1, "%d\t", data->grid[rows][cols]);
+			if (data->grid[rows][cols] == RED)
+				ft_printf(1, "\033[41m  \033[0m", data->grid[rows][cols]);
+			else if (data->grid[rows][cols] == BLUE)
+				ft_printf(1, "\033[44m  \033[0m", data->grid[rows][cols]);
+			else if (data->grid[rows][cols] == EMPTY)
+				ft_printf(1, "\033[47m  \033[0m", data->grid[rows][cols]);
 			cols++;
 		}
 		ft_printf(1, "\n");
@@ -120,13 +129,14 @@ int	main(int argc, char **argv)
 			prompt_player(&data);
 			data.state = AI_TURN;
 		}
-		else
+		else if (data.state == AI_TURN)
 		{
 			// AI
 			t_ai_result result = ai_turn(&data, 0);
 			ft_printf(1, "Best column: %d\n", result.best_col);
 			data.state = PLAYER_TURN;
 		}
+		print_grid(&data);
 	}
 	free_data(&data);
 }
