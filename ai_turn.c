@@ -12,21 +12,40 @@ typedef enum e_ai_result_current {
   NONE
 }  t_ai_result_current;
 
-long evaluate_score(int *window, t_pos_state color) {
+inline long __attribute__((always_inline)) evaluate_score(int *window, t_pos_state color) {
   int self_count = 0;
   int opponent_count = 0;
   int empty_count = 0;
 
   t_pos_state opponent_color = (color == BLUE) ? RED : BLUE;
 
-  for (size_t i = 0; i < 4; i++) {
-    if (window[i] == color) {
-      self_count++;
-    } else if (window[i] == opponent_color) {
-      opponent_count++;
-    } else {
-      empty_count++;
-    }
+  if (window[0] == color) {
+    self_count++;
+  } else if (window[0] == opponent_color) {
+    opponent_count++;
+  } else {
+    empty_count++;
+  }
+  if (window[1] == color) {
+    self_count++;
+  } else if (window[1] == opponent_color) {
+    opponent_count++;
+  } else {
+    empty_count++;
+  }
+  if (window[2] == color) {
+    self_count++;
+  } else if (window[2] == opponent_color) {
+    opponent_count++;
+  } else {
+    empty_count++;
+  }
+  if (window[3] == color) {
+    self_count++;
+  } else if (window[3] == opponent_color) {
+    opponent_count++;
+  } else {
+    empty_count++;
   }
 
   if (self_count == 4) {
@@ -42,53 +61,48 @@ long evaluate_score(int *window, t_pos_state color) {
   return 0;
 }
 
-long score(t_data *data, t_pos_state color) {
+inline long __attribute__((always_inline)) score(t_data *data, t_pos_state color) {
   int window[4];
 
   long total_score = 0;
 
   for (long row = 0; row < data->row_count; row++) {
-    for (long col = 0; col < data->col_count - 3; col++) {
-      window[0] = data->grid[row][col];
-      window[1] = data->grid[row][col + 1];
-      window[2] = data->grid[row][col + 2];
-      window[3] = data->grid[row][col + 3];
+    for (long col = 0; col < data->col_count; col++) {
+      if (col < data->col_count - 3) {
+        window[0] = data->grid[row][col];
+        window[1] = data->grid[row][col + 1];
+        window[2] = data->grid[row][col + 2];
+        window[3] = data->grid[row][col + 3];
 
-      total_score += evaluate_score(window, color);
-    }
-  }
+        total_score += evaluate_score(window, color);
+      }
 
-  for (long col = 0; col < data->col_count; col++) {
-    for (long row = 0; row < data->row_count - 3; row++) {
-      window[0] = data->grid[row][col];
-      window[1] = data->grid[row + 1][col];
-      window[2] = data->grid[row + 2][col];
-      window[3] = data->grid[row + 3][col];
+      if (row < data->row_count - 3) {
+        window[0] = data->grid[row][col];
+        window[1] = data->grid[row + 1][col];
+        window[2] = data->grid[row + 2][col];
+        window[3] = data->grid[row + 3][col];
 
-      total_score += evaluate_score(window, color);
-    }
-  }
+        total_score += evaluate_score(window, color);
+      }
 
-  
-  for (long row = 0; row < data->row_count - 3; row++) {
-    for (long col = 0; col < data->col_count - 3; col++) {
-      window[0] = data->grid[row][col];
-      window[1] = data->grid[row + 1][col + 1];
-      window[2] = data->grid[row + 2][col + 2];
-      window[3] = data->grid[row + 3][col + 3];
+      if (col < data->col_count - 3 && row < data->row_count - 3) {
+        window[0] = data->grid[row][col];
+        window[1] = data->grid[row + 1][col + 1];
+        window[2] = data->grid[row + 2][col + 2];
+        window[3] = data->grid[row + 3][col + 3];
 
-      total_score += evaluate_score(window, color);
-    }
-  }
+        total_score += evaluate_score(window, color);
+      }
 
-  for (long row = 0; row < data->row_count - 3; row++) {
-    for (long col = 3; col < data->col_count; col++) {
-      window[0] = data->grid[row][col];
-      window[1] = data->grid[row + 1][col - 1];
-      window[2] = data->grid[row + 2][col - 2];
-      window[3] = data->grid[row + 3][col - 3];
+      if (col >= 3 && row < data->row_count - 3) {
+        window[0] = data->grid[row][col];
+        window[1] = data->grid[row + 1][col - 1];
+        window[2] = data->grid[row + 2][col - 2];
+        window[3] = data->grid[row + 3][col - 3];
 
-      total_score += evaluate_score(window, color);
+        total_score += evaluate_score(window, color);
+      }
     }
   }
 

@@ -22,7 +22,7 @@ bool	init_data(t_data *data, char **argv)
 		data->grid[i] = ft_calloc(data->col_count, sizeof(int));
 		if (!data->grid[i]) {
 			for (long j = 0; j < i; j++) {
-				free(data->grid[i]);
+				free(data->grid[j]);
 			}
 			ft_free((void **)&data->grid);
 			ft_free((void **)&data->columns_to_check);
