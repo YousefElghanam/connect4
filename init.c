@@ -1,7 +1,6 @@
 #include "libft/includes/libft.h"
 #include "connect4.h"
 #include <stdlib.h>
-#include <time.h>
 #include <sys/time.h>
 
 static bool numeric_check(const char *arg);
