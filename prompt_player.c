@@ -6,11 +6,13 @@ static bool	valid_line(char *line) {
 		return (false);
 	}
 	for (size_t i = 0; i < ft_strlen(line) - 1; i++) {
-		if (!ft_isdigit(line[i]))
+		if (!ft_isdigit(line[i]) && line[i] != 'x' && line[i] != ' ')
 			return (false);
 	}
 	return (true);
 }
+
+#define DEBUG 1
 
 void	prompt_player(t_data *data) {
 	char	*line;
@@ -20,7 +22,7 @@ void	prompt_player(t_data *data) {
 	ft_dprintf(1, "Enter col number\n");
 	while (true) {
 		line = get_next_line(0);
-		if (!line) {
+		if (!line || !*line) {
 			data->state = ABORT;
 			free(line);
 			return ;
@@ -30,19 +32,32 @@ void	prompt_player(t_data *data) {
 			free(line);
 			continue ;
 		}
-		col = ft_atoi(line);
-		free(line);
-		if (col == (long)INT_MAX + 1 || col < 1 || col > data->col_count) {
-			ft_dprintf(1, "Invalid. Please enter column number [1 - %d]\n", ROW_MAX);
-			continue ;
+		if (DEBUG && line[0] == 'x') {
+			row = ft_atoi(ft_split(line, ' ')[1]);
+			col = ft_atoi(ft_split(line, ' ')[2]);
+			data->grid[row][col] = BLUE;
+			if (check_cell(row, col, data))
+				data->state = PLAYER_WIN;
+			else
+				data->state = AI_TURN;
+			return ;				
 		}
-		row = push_coin(col - 1, data);
-		if (row == -1)
-			continue ;
-		if (check_cell(row, col - 1, data))
-			data->state = PLAYER_WIN;
-		else
-			data->state = AI_TURN;
-		return ;
+		else {
+			col = ft_atoi(line);
+			free(line);
+			if (col == (long)INT_MAX + 1 || col < 1 || col > data->col_count) {
+				ft_dprintf(1, "Invalid. Please enter column number [1 - %d]\n", ROW_MAX);
+				continue ;
+			}
+			row = push_coin(col - 1, data);
+			if (row == -1)
+				continue ;
+			ft_dprintf(1, "Adding coin to cell [%d][%d]\n", (int)row, (int)col);
+			if (check_cell(row, col - 1, data))
+				data->state = PLAYER_WIN;
+			else
+				data->state = AI_TURN;
+			return ;
+		}
 	}
 }

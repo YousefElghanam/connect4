@@ -58,7 +58,7 @@ bool	game_over(const t_data *data) {
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	long row;
+	long	row;
 
 	if (!validate_args(argc, argv))
 		return (1);
