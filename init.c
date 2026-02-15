@@ -7,6 +7,7 @@ static bool numeric_check(const char *arg);
 
 bool	init_data(t_data *data, char **argv)
 {
+	data->first_item = true;
 	data->row_count = ft_atoi(argv[1]);
 	data->col_count = ft_atoi(argv[2]);
 	data->grid = ft_calloc(data->row_count, sizeof(int *));

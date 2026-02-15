@@ -37,6 +37,7 @@ typedef struct	s_data
 	long	col_count;
 	int		**grid;
 	t_state	state;
+	bool first_item;
 }	t_data;
 
 typedef struct s_ai_result {

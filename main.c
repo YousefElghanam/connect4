@@ -76,6 +76,10 @@ int	main(int argc, char **argv)
 		else if (data.state == AI_TURN)
 		{
 			long result = ai_turn(&data);
+			if (result == -1) {
+				ft_dprintf(2, "Malloc failure\n");
+				break;
+			}
 			row = push_coin(result, &data);
 			if (check_cell(row, result, &data)) {
 				data.state = AI_WIN;

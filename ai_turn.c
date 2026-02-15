@@ -69,6 +69,8 @@ inline long __attribute__((always_inline)) score(t_data *data, t_pos_state color
 
   for (long row = 0; row < data->row_count; row++) {
     for (long col = 0; col < data->col_count; col++) {
+      if (col > 3 && col < data->col_count - 3)
+        total_score += 5;
       if (col < data->col_count - 3) {
         window[0] = data->grid[row][col];
         window[1] = data->grid[row][col + 1];
@@ -167,7 +169,7 @@ long ai_turn(t_data *data) {
   fill_columns_to_check(data, columns);
   
   for (long i = 0; i < data->col_count; i++) {
-    if (columns[i]) {
+    if (columns[i] || data->first_item) {
       long row = push_coin(i, data);
       
       long current_score;
@@ -192,6 +194,7 @@ long ai_turn(t_data *data) {
   }
 
   free(columns);
+  data->first_item = false;
   
   return max_pos;
 }
