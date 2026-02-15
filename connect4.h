@@ -37,7 +37,6 @@ typedef struct	s_data
 	long	col_count;
 	int		**grid;
 	t_state	state;
-	bool	*columns_to_check;
 }	t_data;
 
 typedef struct s_ai_result {

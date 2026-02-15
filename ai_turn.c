@@ -1,10 +1,11 @@
 #include "connect4.h"
 #include "libft/includes/libft.h"
 #include <limits.h>
+#include <stdlib.h>
 #include <threads.h>
 
-static void check_columns(t_data *data, long col);
-static bool fill_columns_to_check(t_data *data);
+static void check_columns(t_data *data, bool *columns, long col);
+static bool fill_columns_to_check(t_data *data, bool *columns);
 
 typedef enum e_ai_result_current {
   PLAYER_WOULD_WIN,
@@ -110,9 +111,15 @@ inline long __attribute__((always_inline)) score(t_data *data, t_pos_state color
 }
 
 long ai_turn2(t_data *data, size_t depth, long alpha, long beta, t_pos_state color) {
-  bool full = fill_columns_to_check(data);
+  bool *columns = malloc(sizeof(bool) * data->col_count);
+  if (!columns) {
+    return -1;
+  }
+
+  bool full = fill_columns_to_check(data, columns);
 
   if (depth == 0 || full) {
+    free(columns);
     if (full) {
       return 0;
     }
@@ -121,7 +128,7 @@ long ai_turn2(t_data *data, size_t depth, long alpha, long beta, t_pos_state col
 
   long value = LONG_MIN;
   for (long col = 0; col < data->col_count; col++) {
-    if (data->columns_to_check[col]) {
+    if (columns[col]) {
       long row = push_coin(col, data);
       long current_score;
       if (check_cell(row, col, data)) {
@@ -145,16 +152,22 @@ long ai_turn2(t_data *data, size_t depth, long alpha, long beta, t_pos_state col
     }
   }
 
+  free(columns);
   return value;
 }
 
 long ai_turn(t_data *data) {
   long max_score = LONG_MIN;
   long max_pos = 0;
-  fill_columns_to_check(data);
+
+  bool *columns = malloc(sizeof(bool) * data->col_count);
+  if (!columns) {
+    return -1;
+  }
+  fill_columns_to_check(data, columns);
   
   for (long i = 0; i < data->col_count; i++) {
-    if (data->columns_to_check[i]) {
+    if (columns[i]) {
       long row = push_coin(i, data);
       
       long current_score;
@@ -168,42 +181,47 @@ long ai_turn(t_data *data) {
       
       pop_coin(i, data);
       
-      if (current_score > max_score) {
+      if (current_score == -1) {
+        free(columns);
+        return -1;
+      } else if (current_score > max_score) {
         max_score = current_score;
         max_pos = i;
       }
     }
   }
+
+  free(columns);
   
   return max_pos;
 }
 
-static bool fill_columns_to_check(t_data *data) {
+static bool fill_columns_to_check(t_data *data, bool *columns) {
   bool full = true;
 
-  ft_bzero(data->columns_to_check, data->col_count * sizeof(bool));
+  ft_bzero(columns, data->col_count * sizeof(bool));
   for (long col = 0; col < data->col_count; col++) {
     if (data->grid[0][col] != EMPTY) {
       continue;
     }
 
     full = false;
-    check_columns(data, col);
+    check_columns(data, columns, col);
   }
 
   return (full);
 }
 
-static void check_columns(t_data *data, long col) {
+static void check_columns(t_data *data, bool *columns, long col) {
     for (long offset = 0; offset < 4; offset++) {
       for (long row = 0; row < data->row_count; row++) {
         if (col - offset >= 0 && data->grid[row][col - offset]) {
-          data->columns_to_check[col] = true;
+          columns[col] = true;
           return;
         }
 
         if (col + offset < data->col_count && data->grid[row][col + offset]) {
-          data->columns_to_check[col] = true;
+          columns[col] = true;
           return;
         }
       }
