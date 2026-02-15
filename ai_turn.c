@@ -7,12 +7,6 @@
 static void check_columns(t_data *data, bool *columns, long col);
 static bool fill_columns_to_check(t_data *data, bool *columns);
 
-typedef enum e_ai_result_current {
-  PLAYER_WOULD_WIN,
-  AI_WOULD_WIN,
-  NONE
-}  t_ai_result_current;
-
 inline long __attribute__((always_inline)) evaluate_score(int *window, t_pos_state color) {
   int self_count = 0;
   int opponent_count = 0;

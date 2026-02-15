@@ -40,12 +40,6 @@ typedef struct	s_data
 	bool first_item;
 }	t_data;
 
-typedef struct s_ai_result {
-  long best_depth;
-  long win_conditions;
-  long lose_conditions;
-} t_ai_result;
-
 bool	check_cell(long row, long col, t_data *data);
 bool	check_grid_alg(t_data *data);
 void	check_grid(t_data *data);
