@@ -1,64 +1,183 @@
 #include "connect4.h"
 #include "libft/includes/libft.h"
+#include <limits.h>
+#include <threads.h>
 
 static void check_columns(t_data *data, long col);
-static void fill_columns_to_check(t_data *data);
+static bool fill_columns_to_check(t_data *data);
 
-t_ai_result ai_turn(t_data *data, long depth) {
-  fill_columns_to_check(data);
+typedef enum e_ai_result_current {
+  PLAYER_WOULD_WIN,
+  AI_WOULD_WIN,
+  NONE
+}  t_ai_result_current;
 
-  t_ai_result best_result;
-  best_result.best_col = -1;
-  best_result.best_depth = depth;
-  best_result.win_conditions = 0;
+long evaluate_score(int *window, t_pos_state color) {
+  int self_count = 0;
+  int opponent_count = 0;
+  int empty_count = 0;
 
-  t_ai_result cur_result = best_result;
+  t_pos_state opponent_color = (color == BLUE) ? RED : BLUE;
 
-  long	row;
-  for (long i = 0; i < data->col_count; i++) {
-    if (data->columns_to_check[i]) {
-      cur_result.win_conditions = 0;
-      cur_result.best_col = i;
-      if (best_result.best_col == -1) {
-        best_result.best_col = i;
-      }
-      row = push_coin(i, data);
-      if (check_cell(row, i, data)) {
-        pop_coin(i, data);
-        if (data->state == PLAYER_TURN) {
-          return (best_result);
-        } else if (data->state == AI_TURN) {
-          cur_result.win_conditions++;
-          continue;
-        }
-      }
-      else if (depth < 5) {
-        data->state = !data->state;
-        cur_result = ai_turn(data, depth + 1);
-        if (cur_result.best_depth > best_result.best_depth ||
-            (cur_result.best_depth == best_result.best_depth &&
-             cur_result.win_conditions > best_result.win_conditions)) {
-          best_result = cur_result;
-          best_result.best_col = i;
-        }
-        data->state = !data->state;
-      }
-      pop_coin(i, data);
+  for (size_t i = 0; i < 4; i++) {
+    if (window[i] == color) {
+      self_count++;
+    } else if (window[i] == opponent_color) {
+      opponent_count++;
+    } else {
+      empty_count++;
     }
   }
 
-  return (best_result);
+  if (self_count == 4) {
+    return 100000;
+  } else if (self_count == 3 && empty_count == 1) {
+    return 1000;
+  } else if (self_count == 2 && empty_count == 2) {
+    return 100;
+  } else if (opponent_count == 3 && empty_count == 1) {
+    return -5000;
+  }
+
+  return 0;
 }
 
-static void fill_columns_to_check(t_data *data) {
+long score(t_data *data, t_pos_state color) {
+  int window[4];
+
+  long total_score = 0;
+
+  for (long row = 0; row < data->row_count; row++) {
+    for (long col = 0; col < data->col_count - 3; col++) {
+      window[0] = data->grid[row][col];
+      window[1] = data->grid[row][col + 1];
+      window[2] = data->grid[row][col + 2];
+      window[3] = data->grid[row][col + 3];
+
+      total_score += evaluate_score(window, color);
+    }
+  }
+
+  for (long col = 0; col < data->col_count; col++) {
+    for (long row = 0; row < data->row_count - 3; row++) {
+      window[0] = data->grid[row][col];
+      window[1] = data->grid[row + 1][col];
+      window[2] = data->grid[row + 2][col];
+      window[3] = data->grid[row + 3][col];
+
+      total_score += evaluate_score(window, color);
+    }
+  }
+
+  
+  for (long row = 0; row < data->row_count - 3; row++) {
+    for (long col = 0; col < data->col_count - 3; col++) {
+      window[0] = data->grid[row][col];
+      window[1] = data->grid[row + 1][col + 1];
+      window[2] = data->grid[row + 2][col + 2];
+      window[3] = data->grid[row + 3][col + 3];
+
+      total_score += evaluate_score(window, color);
+    }
+  }
+
+  for (long row = 0; row < data->row_count - 3; row++) {
+    for (long col = 3; col < data->col_count; col++) {
+      window[0] = data->grid[row][col];
+      window[1] = data->grid[row + 1][col - 1];
+      window[2] = data->grid[row + 2][col - 2];
+      window[3] = data->grid[row + 3][col - 3];
+
+      total_score += evaluate_score(window, color);
+    }
+  }
+
+  return total_score;
+}
+
+long ai_turn2(t_data *data, size_t depth, long alpha, long beta, t_pos_state color) {
+  bool full = fill_columns_to_check(data);
+
+  if (depth == 0 || full) {
+    if (full) {
+      return 0;
+    }
+    return color * score(data, color);
+  }
+
+  long value = LONG_MIN;
+  for (long col = 0; col < data->col_count; col++) {
+    if (data->columns_to_check[col]) {
+      long row = push_coin(col, data);
+      long current_score;
+      if (check_cell(row, col, data)) {
+          current_score = 10000000;
+      } else {
+        data->state = !data->state;
+        current_score = -ai_turn2(data, depth - 1, -beta, -alpha, -color);
+        data->state = !data->state;
+      }
+
+      pop_coin(col, data);
+
+
+
+      if (current_score > value)
+        value = current_score;
+      if (value > alpha)
+        alpha = value;
+      if (alpha >= beta)
+        break;
+    }
+  }
+
+  return value;
+}
+
+long ai_turn(t_data *data) {
+  long max_score = LONG_MIN;
+  long max_pos = 0;
+  fill_columns_to_check(data);
+  
+  for (long i = 0; i < data->col_count; i++) {
+    if (data->columns_to_check[i]) {
+      long row = push_coin(i, data);
+      
+      long current_score;
+      if (check_cell(row, i, data)) {
+        current_score = 10000000;
+      } else {
+        data->state = !data->state;
+        current_score = -ai_turn2(data, 5, LONG_MIN + 1, LONG_MAX, -RED);
+        data->state = !data->state;
+      }
+      
+      pop_coin(i, data);
+      
+      if (current_score > max_score) {
+        max_score = current_score;
+        max_pos = i;
+      }
+    }
+  }
+  
+  return max_pos;
+}
+
+static bool fill_columns_to_check(t_data *data) {
+  bool full = true;
+
   ft_bzero(data->columns_to_check, data->col_count * sizeof(bool));
   for (long col = 0; col < data->col_count; col++) {
     if (data->grid[0][col] != EMPTY) {
       continue;
     }
 
+    full = false;
     check_columns(data, col);
   }
+
+  return (full);
 }
 
 static void check_columns(t_data *data, long col) {

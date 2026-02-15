@@ -72,9 +72,9 @@ int	main(int argc, char **argv)
 		}
 		else if (data.state == AI_TURN)
 		{
-			t_ai_result result = ai_turn(&data, 0);
-			row = push_coin(result.best_col, &data);
-			if (check_cell(row, result.best_col, &data)) {
+			long result = ai_turn(&data);
+			row = push_coin(result, &data);
+			if (check_cell(row, result, &data)) {
 				data.state = AI_WIN;
 			} else {
 				data.state = PLAYER_TURN;
