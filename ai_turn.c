@@ -119,7 +119,7 @@ long ai_turn2(t_data *data, size_t depth, long alpha, long beta, t_pos_state col
     if (full) {
       return 0;
     }
-    return color * score(data, color);
+    return score(data, color);
   }
 
   long value = LONG_MIN;
@@ -168,10 +168,12 @@ long ai_turn(t_data *data) {
       
       long current_score;
       if (check_cell(row, i, data)) {
-        current_score = 10000000;
+        pop_coin(i, data);
+        free(columns);
+        return i;
       } else {
         data->state = !data->state;
-        current_score = -ai_turn2(data, MAX_RECURSION_DEPTH, LONG_MIN + 1, LONG_MAX, -RED);
+        current_score = -ai_turn2(data, MAX_RECURSION_DEPTH, LONG_MIN + 1, LONG_MAX, BLUE);
         data->state = !data->state;
       }
       
