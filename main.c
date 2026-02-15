@@ -12,10 +12,7 @@ void	print_grid(t_data *data)
 	rows = 0;
 	cols = 0;
 	while (cols < data->col_count) {
-		if (cols < 9)
-			ft_dprintf(1, " %ld", cols + 1);
-		else
-			ft_dprintf(1, "%ld", cols + 1);
+		ft_dprintf(1, "% 2ld ", cols + 1);
 		cols++;
 	}
 	ft_dprintf(1, "\n");
@@ -25,11 +22,11 @@ void	print_grid(t_data *data)
 		while (cols < data->col_count)
 		{
 			if (data->grid[rows][cols] == RED)
-				ft_dprintf(1, "\033[41m  \033[0m");
+				ft_dprintf(1, "\033[41m   \033[0m");
 			else if (data->grid[rows][cols] == BLUE)
-				ft_dprintf(1, "\033[44m  \033[0m");
+				ft_dprintf(1, "\033[44m   \033[0m");
 			else if (data->grid[rows][cols] == EMPTY)
-				ft_dprintf(1, "\033[47m  \033[0m");
+				ft_dprintf(1, "\033[47m   \033[0m");
 			cols++;
 		}
 		ft_dprintf(1, "\n");
