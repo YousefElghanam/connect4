@@ -25,11 +25,14 @@ bool	init_data(t_data *data, char **argv)
 		}
 	}
 	data->state = rand() % 2;
-	if (data->row_count * data->col_count > 812) {
-		#ifdef MAX_RECURSION_DEPTH
-		# undef MAX_RECURSION_DEPTH
-		#endif
-		#define MAX_RECURSION_DEPTH 4
+	if (data->row_count * data->col_count > 1000) {
+		data->recursion_depth = 3;
+	}
+	else if (data->row_count * data->col_count > 500) {
+		data->recursion_depth = 4;
+	}
+	else {
+		data->recursion_depth = 5;
 	}
 	return (true);
 }

@@ -4,11 +4,9 @@
 # define DEBUG 0
 # define MATCHES_TO_WIN 4
 # define ROW_MIN 6
-# define ROW_MAX 42
+# define ROW_MAX 25
 # define COL_MIN 7
 # define COL_MAX 42
-
-# define MAX_RECURSION_DEPTH 5
 
 # include "libft/includes/libft.h"
 # include <stdbool.h>
@@ -37,7 +35,8 @@ typedef struct	s_data
 	long	col_count;
 	int		**grid;
 	t_state	state;
-	bool first_item;
+	bool	first_item;
+	int		recursion_depth;
 }	t_data;
 
 typedef struct s_ai_result {
