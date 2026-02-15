@@ -1,819 +1,1065 @@
 [
   {
-    "file": "ft_atoi.c",
+    "file": "stdlib/ft_atoi.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_atoi.o",
+      "-Iincludes",
       "-c",
-      "ft_atoi.c"
+      "stdlib/ft_atoi.c",
+      "-o",
+      "obj/stdlib/ft_atoi.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_atoi.o"
+    "output": "obj/stdlib/ft_atoi.o"
   },
   {
-    "file": "ft_bzero.c",
+    "file": "stdlib/ft_calloc.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_bzero.o",
+      "-Iincludes",
       "-c",
-      "ft_bzero.c"
+      "stdlib/ft_calloc.c",
+      "-o",
+      "obj/stdlib/ft_calloc.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_bzero.o"
+    "output": "obj/stdlib/ft_calloc.o"
   },
   {
-    "file": "ft_calloc.c",
+    "file": "stdlib/ft_itoa.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_calloc.o",
+      "-Iincludes",
       "-c",
-      "ft_calloc.c"
+      "stdlib/ft_itoa.c",
+      "-o",
+      "obj/stdlib/ft_itoa.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_calloc.o"
+    "output": "obj/stdlib/ft_itoa.o"
   },
   {
-    "file": "ft_isalnum.c",
+    "file": "stdlib/free_array.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_isalnum.o",
+      "-Iincludes",
       "-c",
-      "ft_isalnum.c"
+      "stdlib/free_array.c",
+      "-o",
+      "obj/stdlib/free_array.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_isalnum.o"
+    "output": "obj/stdlib/free_array.o"
   },
   {
-    "file": "ft_isalpha.c",
+    "file": "stdlib/ft_free.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_isalpha.o",
+      "-Iincludes",
       "-c",
-      "ft_isalpha.c"
+      "stdlib/ft_free.c",
+      "-o",
+      "obj/stdlib/ft_free.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_isalpha.o"
+    "output": "obj/stdlib/ft_free.o"
   },
   {
-    "file": "ft_isascii.c",
+    "file": "ctype/ft_isalpha.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_isascii.o",
+      "-Iincludes",
       "-c",
-      "ft_isascii.c"
+      "ctype/ft_isalpha.c",
+      "-o",
+      "obj/ctype/ft_isalpha.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_isascii.o"
+    "output": "obj/ctype/ft_isalpha.o"
   },
   {
-    "file": "ft_isdigit.c",
+    "file": "ctype/ft_isdigit.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_isdigit.o",
+      "-Iincludes",
       "-c",
-      "ft_isdigit.c"
+      "ctype/ft_isdigit.c",
+      "-o",
+      "obj/ctype/ft_isdigit.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_isdigit.o"
+    "output": "obj/ctype/ft_isdigit.o"
   },
   {
-    "file": "ft_isprint.c",
+    "file": "ctype/ft_toupper.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_isprint.o",
+      "-Iincludes",
       "-c",
-      "ft_isprint.c"
+      "ctype/ft_toupper.c",
+      "-o",
+      "obj/ctype/ft_toupper.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_isprint.o"
+    "output": "obj/ctype/ft_toupper.o"
   },
   {
-    "file": "ft_itoa.c",
+    "file": "ctype/ft_isalnum.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_itoa.o",
+      "-Iincludes",
       "-c",
-      "ft_itoa.c"
+      "ctype/ft_isalnum.c",
+      "-o",
+      "obj/ctype/ft_isalnum.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_itoa.o"
+    "output": "obj/ctype/ft_isalnum.o"
   },
   {
-    "file": "ft_memchr.c",
+    "file": "ctype/ft_isascii.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_memchr.o",
+      "-Iincludes",
       "-c",
-      "ft_memchr.c"
+      "ctype/ft_isascii.c",
+      "-o",
+      "obj/ctype/ft_isascii.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_memchr.o"
+    "output": "obj/ctype/ft_isascii.o"
   },
   {
-    "file": "ft_memcmp.c",
+    "file": "ctype/ft_isprint.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_memcmp.o",
+      "-Iincludes",
       "-c",
-      "ft_memcmp.c"
+      "ctype/ft_isprint.c",
+      "-o",
+      "obj/ctype/ft_isprint.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_memcmp.o"
+    "output": "obj/ctype/ft_isprint.o"
   },
   {
-    "file": "ft_memcpy.c",
+    "file": "ctype/ft_tolower.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_memcpy.o",
+      "-Iincludes",
       "-c",
-      "ft_memcpy.c"
+      "ctype/ft_tolower.c",
+      "-o",
+      "obj/ctype/ft_tolower.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_memcpy.o"
+    "output": "obj/ctype/ft_tolower.o"
   },
   {
-    "file": "ft_memmove.c",
+    "file": "mem/ft_memchr.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_memmove.o",
+      "-Iincludes",
       "-c",
-      "ft_memmove.c"
+      "mem/ft_memchr.c",
+      "-o",
+      "obj/mem/ft_memchr.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_memmove.o"
+    "output": "obj/mem/ft_memchr.o"
   },
   {
-    "file": "ft_memset.c",
+    "file": "mem/ft_memcpy.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_memset.o",
+      "-Iincludes",
       "-c",
-      "ft_memset.c"
+      "mem/ft_memcpy.c",
+      "-o",
+      "obj/mem/ft_memcpy.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_memset.o"
+    "output": "obj/mem/ft_memcpy.o"
   },
   {
-    "file": "ft_putchar_fd.c",
+    "file": "mem/ft_memset.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_putchar_fd.o",
+      "-Iincludes",
       "-c",
-      "ft_putchar_fd.c"
+      "mem/ft_memset.c",
+      "-o",
+      "obj/mem/ft_memset.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_putchar_fd.o"
+    "output": "obj/mem/ft_memset.o"
   },
   {
-    "file": "ft_putendl_fd.c",
+    "file": "mem/ft_bzero.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_putendl_fd.o",
+      "-Iincludes",
       "-c",
-      "ft_putendl_fd.c"
+      "mem/ft_bzero.c",
+      "-o",
+      "obj/mem/ft_bzero.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_putendl_fd.o"
+    "output": "obj/mem/ft_bzero.o"
   },
   {
-    "file": "ft_putnbr_fd.c",
+    "file": "mem/ft_memcmp.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_putnbr_fd.o",
+      "-Iincludes",
       "-c",
-      "ft_putnbr_fd.c"
+      "mem/ft_memcmp.c",
+      "-o",
+      "obj/mem/ft_memcmp.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_putnbr_fd.o"
+    "output": "obj/mem/ft_memcmp.o"
   },
   {
-    "file": "ft_putstr_fd.c",
+    "file": "mem/ft_memmove.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_putstr_fd.o",
+      "-Iincludes",
       "-c",
-      "ft_putstr_fd.c"
+      "mem/ft_memmove.c",
+      "-o",
+      "obj/mem/ft_memmove.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_putstr_fd.o"
+    "output": "obj/mem/ft_memmove.o"
   },
   {
-    "file": "ft_split.c",
+    "file": "string/ft_strdup.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_split.o",
+      "-Iincludes",
       "-c",
-      "ft_split.c"
+      "string/ft_strdup.c",
+      "-o",
+      "obj/string/ft_strdup.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_split.o"
+    "output": "obj/string/ft_strdup.o"
   },
   {
-    "file": "ft_strchr.c",
+    "file": "string/ft_strlcpy.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_strchr.o",
+      "-Iincludes",
       "-c",
-      "ft_strchr.c"
+      "string/ft_strlcpy.c",
+      "-o",
+      "obj/string/ft_strlcpy.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_strchr.o"
+    "output": "obj/string/ft_strlcpy.o"
   },
   {
-    "file": "ft_strdup.c",
+    "file": "string/ft_strncmp.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_strdup.o",
+      "-Iincludes",
       "-c",
-      "ft_strdup.c"
+      "string/ft_strncmp.c",
+      "-o",
+      "obj/string/ft_strncmp.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_strdup.o"
+    "output": "obj/string/ft_strncmp.o"
   },
   {
-    "file": "ft_striteri.c",
+    "file": "string/ft_strchr.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_striteri.o",
+      "-Iincludes",
       "-c",
-      "ft_striteri.c"
+      "string/ft_strchr.c",
+      "-o",
+      "obj/string/ft_strchr.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_striteri.o"
+    "output": "obj/string/ft_strchr.o"
   },
   {
-    "file": "ft_strjoin.c",
+    "file": "string/ft_strrchr.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_strjoin.o",
+      "-Iincludes",
       "-c",
-      "ft_strjoin.c"
+      "string/ft_strrchr.c",
+      "-o",
+      "obj/string/ft_strrchr.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_strjoin.o"
+    "output": "obj/string/ft_strrchr.o"
   },
   {
-    "file": "ft_strlcat.c",
+    "file": "string/ft_strlcat.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_strlcat.o",
+      "-Iincludes",
       "-c",
-      "ft_strlcat.c"
+      "string/ft_strlcat.c",
+      "-o",
+      "obj/string/ft_strlcat.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_strlcat.o"
+    "output": "obj/string/ft_strlcat.o"
   },
   {
-    "file": "ft_strlcpy.c",
+    "file": "string/ft_strlen.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_strlcpy.o",
+      "-Iincludes",
       "-c",
-      "ft_strlcpy.c"
+      "string/ft_strlen.c",
+      "-o",
+      "obj/string/ft_strlen.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_strlcpy.o"
+    "output": "obj/string/ft_strlen.o"
   },
   {
-    "file": "ft_strlen.c",
+    "file": "string/ft_strnstr.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_strlen.o",
+      "-Iincludes",
       "-c",
-      "ft_strlen.c"
+      "string/ft_strnstr.c",
+      "-o",
+      "obj/string/ft_strnstr.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_strlen.o"
+    "output": "obj/string/ft_strnstr.o"
   },
   {
-    "file": "ft_strmapi.c",
+    "file": "string/ft_substr.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_strmapi.o",
+      "-Iincludes",
       "-c",
-      "ft_strmapi.c"
+      "string/ft_substr.c",
+      "-o",
+      "obj/string/ft_substr.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_strmapi.o"
+    "output": "obj/string/ft_substr.o"
   },
   {
-    "file": "ft_strncmp.c",
+    "file": "string/ft_strjoin.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_strncmp.o",
+      "-Iincludes",
       "-c",
-      "ft_strncmp.c"
+      "string/ft_strjoin.c",
+      "-o",
+      "obj/string/ft_strjoin.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_strncmp.o"
+    "output": "obj/string/ft_strjoin.o"
   },
   {
-    "file": "ft_strnstr.c",
+    "file": "string/ft_strtrim.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_strnstr.o",
+      "-Iincludes",
       "-c",
-      "ft_strnstr.c"
+      "string/ft_strtrim.c",
+      "-o",
+      "obj/string/ft_strtrim.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_strnstr.o"
+    "output": "obj/string/ft_strtrim.o"
   },
   {
-    "file": "ft_strrchr.c",
+    "file": "string/ft_split.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_strrchr.o",
+      "-Iincludes",
       "-c",
-      "ft_strrchr.c"
+      "string/ft_split.c",
+      "-o",
+      "obj/string/ft_split.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_strrchr.o"
+    "output": "obj/string/ft_split.o"
   },
   {
-    "file": "ft_strtrim.c",
+    "file": "string/ft_strmapi.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_strtrim.o",
+      "-Iincludes",
       "-c",
-      "ft_strtrim.c"
+      "string/ft_strmapi.c",
+      "-o",
+      "obj/string/ft_strmapi.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_strtrim.o"
+    "output": "obj/string/ft_strmapi.o"
   },
   {
-    "file": "ft_substr.c",
+    "file": "string/ft_striteri.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_substr.o",
+      "-Iincludes",
       "-c",
-      "ft_substr.c"
+      "string/ft_striteri.c",
+      "-o",
+      "obj/string/ft_striteri.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_substr.o"
+    "output": "obj/string/ft_striteri.o"
   },
   {
-    "file": "ft_tolower.c",
+    "file": "string/string.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_tolower.o",
+      "-Iincludes",
       "-c",
-      "ft_tolower.c"
+      "string/string.c",
+      "-o",
+      "obj/string/string.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_tolower.o"
+    "output": "obj/string/string.o"
   },
   {
-    "file": "ft_toupper.c",
+    "file": "string/stringlist.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_toupper.o",
+      "-Iincludes",
       "-c",
-      "ft_toupper.c"
+      "string/stringlist.c",
+      "-o",
+      "obj/string/stringlist.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_toupper.o"
+    "output": "obj/string/stringlist.o"
   },
   {
-    "file": "ft_lstadd_back_bonus.c",
+    "file": "string/string_append.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_lstadd_back_bonus.o",
+      "-Iincludes",
       "-c",
-      "ft_lstadd_back_bonus.c"
+      "string/string_append.c",
+      "-o",
+      "obj/string/string_append.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_lstadd_back_bonus.o"
+    "output": "obj/string/string_append.o"
   },
   {
-    "file": "ft_lstadd_front_bonus.c",
+    "file": "string/string_split.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_lstadd_front_bonus.o",
+      "-Iincludes",
       "-c",
-      "ft_lstadd_front_bonus.c"
+      "string/string_split.c",
+      "-o",
+      "obj/string/string_split.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_lstadd_front_bonus.o"
+    "output": "obj/string/string_split.o"
   },
   {
-    "file": "ft_lstclear_bonus.c",
+    "file": "string/string_substr.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_lstclear_bonus.o",
+      "-Iincludes",
       "-c",
-      "ft_lstclear_bonus.c"
+      "string/string_substr.c",
+      "-o",
+      "obj/string/string_substr.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_lstclear_bonus.o"
+    "output": "obj/string/string_substr.o"
   },
   {
-    "file": "ft_lstdelone_bonus.c",
+    "file": "put/ft_putchar_fd.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_lstdelone_bonus.o",
+      "-Iincludes",
       "-c",
-      "ft_lstdelone_bonus.c"
+      "put/ft_putchar_fd.c",
+      "-o",
+      "obj/put/ft_putchar_fd.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_lstdelone_bonus.o"
+    "output": "obj/put/ft_putchar_fd.o"
   },
   {
-    "file": "ft_lstiter_bonus.c",
+    "file": "put/ft_putstr_fd.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_lstiter_bonus.o",
+      "-Iincludes",
       "-c",
-      "ft_lstiter_bonus.c"
+      "put/ft_putstr_fd.c",
+      "-o",
+      "obj/put/ft_putstr_fd.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_lstiter_bonus.o"
+    "output": "obj/put/ft_putstr_fd.o"
   },
   {
-    "file": "ft_lstlast_bonus.c",
+    "file": "put/ft_putendl_fd.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_lstlast_bonus.o",
+      "-Iincludes",
       "-c",
-      "ft_lstlast_bonus.c"
+      "put/ft_putendl_fd.c",
+      "-o",
+      "obj/put/ft_putendl_fd.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_lstlast_bonus.o"
+    "output": "obj/put/ft_putendl_fd.o"
   },
   {
-    "file": "ft_lstmap_bonus.c",
+    "file": "put/ft_putnbr_fd.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_lstmap_bonus.o",
+      "-Iincludes",
       "-c",
-      "ft_lstmap_bonus.c"
+      "put/ft_putnbr_fd.c",
+      "-o",
+      "obj/put/ft_putnbr_fd.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_lstmap_bonus.o"
+    "output": "obj/put/ft_putnbr_fd.o"
   },
   {
-    "file": "ft_lstnew_bonus.c",
+    "file": "list/ft_lstnew.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_lstnew_bonus.o",
+      "-Iincludes",
       "-c",
-      "ft_lstnew_bonus.c"
+      "list/ft_lstnew.c",
+      "-o",
+      "obj/list/ft_lstnew.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_lstnew_bonus.o"
+    "output": "obj/list/ft_lstnew.o"
   },
   {
-    "file": "ft_lstsize_bonus.c",
+    "file": "list/ft_lstadd_front.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_lstsize_bonus.o",
+      "-Iincludes",
       "-c",
-      "ft_lstsize_bonus.c"
+      "list/ft_lstadd_front.c",
+      "-o",
+      "obj/list/ft_lstadd_front.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_lstsize_bonus.o"
+    "output": "obj/list/ft_lstadd_front.o"
   },
   {
-    "file": "ft_printf.c",
+    "file": "list/ft_lstsize.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_printf.o",
+      "-Iincludes",
       "-c",
-      "ft_printf.c"
+      "list/ft_lstsize.c",
+      "-o",
+      "obj/list/ft_lstsize.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_printf.o"
+    "output": "obj/list/ft_lstsize.o"
   },
   {
-    "file": "ft_printf_utils.c",
+    "file": "list/ft_lstlast.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_printf_utils.o",
+      "-Iincludes",
       "-c",
-      "ft_printf_utils.c"
+      "list/ft_lstlast.c",
+      "-o",
+      "obj/list/ft_lstlast.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_printf_utils.o"
+    "output": "obj/list/ft_lstlast.o"
   },
   {
-    "file": "ft_write_types.c",
+    "file": "list/ft_lstadd_back.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_write_types.o",
+      "-Iincludes",
       "-c",
-      "ft_write_types.c"
+      "list/ft_lstadd_back.c",
+      "-o",
+      "obj/list/ft_lstadd_back.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_write_types.o"
+    "output": "obj/list/ft_lstadd_back.o"
   },
   {
-    "file": "ft_write_types2.c",
+    "file": "list/ft_lstdelone.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_write_types2.o",
+      "-Iincludes",
       "-c",
-      "ft_write_types2.c"
+      "list/ft_lstdelone.c",
+      "-o",
+      "obj/list/ft_lstdelone.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_write_types2.o"
+    "output": "obj/list/ft_lstdelone.o"
   },
   {
-    "file": "get_next_line.c",
+    "file": "list/ft_lstclear.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/get_next_line.o",
+      "-Iincludes",
       "-c",
-      "get_next_line.c"
+      "list/ft_lstclear.c",
+      "-o",
+      "obj/list/ft_lstclear.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/get_next_line.o"
+    "output": "obj/list/ft_lstclear.o"
   },
   {
-    "file": "get_next_line_utils.c",
+    "file": "list/ft_lstiter.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/get_next_line_utils.o",
+      "-Iincludes",
       "-c",
-      "get_next_line_utils.c"
+      "list/ft_lstiter.c",
+      "-o",
+      "obj/list/ft_lstiter.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/get_next_line_utils.o"
+    "output": "obj/list/ft_lstiter.o"
   },
   {
-    "file": "ft_malloc.c",
+    "file": "list/ft_lstmap.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_malloc.o",
+      "-Iincludes",
       "-c",
-      "ft_malloc.c"
+      "list/ft_lstmap.c",
+      "-o",
+      "obj/list/ft_lstmap.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_malloc.o"
+    "output": "obj/list/ft_lstmap.o"
   },
   {
-    "file": "ft_malloc_utils.c",
+    "file": "gnl/get_next_line.c",
     "arguments": [
       "cc",
+      "-MMD",
+      "-MP",
       "-Wall",
       "-Wextra",
       "-Werror",
-      "-g",
-      "-o",
-      "objects/ft_malloc_utils.o",
+      "-Iincludes",
       "-c",
-      "ft_malloc_utils.c"
+      "gnl/get_next_line.c",
+      "-o",
+      "obj/gnl/get_next_line.o"
     ],
     "directory": "/home/jel-ghna/github/connect4/libft",
-    "output": "objects/ft_malloc_utils.o"
+    "output": "obj/gnl/get_next_line.o"
+  },
+  {
+    "file": "ft_printf/char_str_handlers.c",
+    "arguments": [
+      "cc",
+      "-MMD",
+      "-MP",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Iincludes",
+      "-c",
+      "ft_printf/char_str_handlers.c",
+      "-o",
+      "obj/ft_printf/char_str_handlers.o"
+    ],
+    "directory": "/home/jel-ghna/github/connect4/libft",
+    "output": "obj/ft_printf/char_str_handlers.o"
+  },
+  {
+    "file": "ft_printf/format_parser.c",
+    "arguments": [
+      "cc",
+      "-MMD",
+      "-MP",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Iincludes",
+      "-c",
+      "ft_printf/format_parser.c",
+      "-o",
+      "obj/ft_printf/format_parser.o"
+    ],
+    "directory": "/home/jel-ghna/github/connect4/libft",
+    "output": "obj/ft_printf/format_parser.o"
+  },
+  {
+    "file": "ft_printf/ft_itoa.c",
+    "arguments": [
+      "cc",
+      "-MMD",
+      "-MP",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Iincludes",
+      "-c",
+      "ft_printf/ft_itoa.c",
+      "-o",
+      "obj/ft_printf/ft_itoa.o"
+    ],
+    "directory": "/home/jel-ghna/github/connect4/libft",
+    "output": "obj/ft_printf/ft_itoa.o"
+  },
+  {
+    "file": "ft_printf/ft_printf.c",
+    "arguments": [
+      "cc",
+      "-MMD",
+      "-MP",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Iincludes",
+      "-c",
+      "ft_printf/ft_printf.c",
+      "-o",
+      "obj/ft_printf/ft_printf.o"
+    ],
+    "directory": "/home/jel-ghna/github/connect4/libft",
+    "output": "obj/ft_printf/ft_printf.o"
+  },
+  {
+    "file": "ft_printf/ft_itoa_base.c",
+    "arguments": [
+      "cc",
+      "-MMD",
+      "-MP",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Iincludes",
+      "-c",
+      "ft_printf/ft_itoa_base.c",
+      "-o",
+      "obj/ft_printf/ft_itoa_base.o"
+    ],
+    "directory": "/home/jel-ghna/github/connect4/libft",
+    "output": "obj/ft_printf/ft_itoa_base.o"
+  },
+  {
+    "file": "ft_printf/numeric_handlers.c",
+    "arguments": [
+      "cc",
+      "-MMD",
+      "-MP",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Iincludes",
+      "-c",
+      "ft_printf/numeric_handlers.c",
+      "-o",
+      "obj/ft_printf/numeric_handlers.o"
+    ],
+    "directory": "/home/jel-ghna/github/connect4/libft",
+    "output": "obj/ft_printf/numeric_handlers.o"
+  },
+  {
+    "file": "ft_printf/printing.c",
+    "arguments": [
+      "cc",
+      "-MMD",
+      "-MP",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Iincludes",
+      "-c",
+      "ft_printf/printing.c",
+      "-o",
+      "obj/ft_printf/printing.o"
+    ],
+    "directory": "/home/jel-ghna/github/connect4/libft",
+    "output": "obj/ft_printf/printing.o"
+  },
+  {
+    "file": "misc/pow.c",
+    "arguments": [
+      "cc",
+      "-MMD",
+      "-MP",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Iincludes",
+      "-c",
+      "misc/pow.c",
+      "-o",
+      "obj/misc/pow.o"
+    ],
+    "directory": "/home/jel-ghna/github/connect4/libft",
+    "output": "obj/misc/pow.o"
   },
   {
     "file": "main.c",
@@ -850,5 +1096,77 @@
     ],
     "directory": "/home/jel-ghna/github/connect4",
     "output": "objects/prompt_player.o"
+  },
+  {
+    "file": "ai_turn.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-MMD",
+      "-MP",
+      "-g",
+      "-o",
+      "objects/ai_turn.o",
+      "-c",
+      "ai_turn.c"
+    ],
+    "directory": "/home/jel-ghna/github/connect4",
+    "output": "objects/ai_turn.o"
+  },
+  {
+    "file": "grid_handling.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-MMD",
+      "-MP",
+      "-g",
+      "-o",
+      "objects/grid_handling.o",
+      "-c",
+      "grid_handling.c"
+    ],
+    "directory": "/home/jel-ghna/github/connect4",
+    "output": "objects/grid_handling.o"
+  },
+  {
+    "file": "check_grid.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-MMD",
+      "-MP",
+      "-g",
+      "-o",
+      "objects/check_grid.o",
+      "-c",
+      "check_grid.c"
+    ],
+    "directory": "/home/jel-ghna/github/connect4",
+    "output": "objects/check_grid.o"
+  },
+  {
+    "file": "init.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-MMD",
+      "-MP",
+      "-g",
+      "-o",
+      "objects/init.o",
+      "-c",
+      "init.c"
+    ],
+    "directory": "/home/jel-ghna/github/connect4",
+    "output": "objects/init.o"
   }
 ]

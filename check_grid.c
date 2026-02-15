@@ -11,85 +11,105 @@ bool	in_bound(long row, long col, t_data *data) {
 bool	win_neg_diagonal(long row, long col, t_data *data) {
 	int		color;
 	long	matches;
+	long	i;
 
 	color = data->grid[row][col];
 	matches = 1;
+	i = 1;
 	while (matches < MATCHES_TO_WIN
-			&& in_bound(row + matches, col + matches, data)
-			&& data->grid[row + matches][col + matches] == color) {
+			&& in_bound(row + i, col + i, data)
+			&& data->grid[row + i][col + i] == color) {
 				matches++;
-				ft_dprintf(1, "neg dia matches: %d\n", (int)matches);
+				i++;
 			}
+	ft_dprintf(1, "neg dia matches down: %d\n", (int)matches - 1);
+	i = 1;
 	while (matches < MATCHES_TO_WIN
-			&& in_bound(row - matches, col - matches, data)
-			&& data->grid[row - matches][col - matches] == color) {
+			&& in_bound(row - i, col - i, data)
+			&& data->grid[row - i][col - i] == color) {
 				matches++;
-				ft_dprintf(1, "neg dia matches: %d\n", (int)matches);
+				i++;
 			}
-	return (matches == MATCHES_TO_WIN);
+	ft_dprintf(1, "neg dia matches up: %d\n", (int)matches - 1);
+	return (matches >= MATCHES_TO_WIN);
 }
 
 bool	win_pos_diagonal(long row, long col, t_data *data) {
 	int		color;
 	long	matches;
+	long	i;
 
 	color = data->grid[row][col];
 	matches = 1;
+	i = 1;
 	while (matches < MATCHES_TO_WIN
-			&& in_bound(row - matches, col + matches, data)
-			&& data->grid[row - matches][col + matches] == color) {
+			&& in_bound(row - i, col + i, data)
+			&& data->grid[row - i][col + i] == color) {
 				matches++;
-				ft_dprintf(1, "pos dia matches: %d\n", (int)matches);
+				i++;
 			}
+	ft_dprintf(1, "pos dia matches up: %d\n", (int)matches - 1);
+	i = 1;
 	while (matches < MATCHES_TO_WIN
-			&& in_bound(row + matches, col - matches, data)
-			&& data->grid[row + matches][col - matches] == color) {
+			&& in_bound(row + i, col - i, data)
+			&& data->grid[row + i][col - i] == color) {
 				matches++;
-				ft_dprintf(1, "pos dia matches: %d\n", (int)matches);
+				i++;
 			}
-	return (matches == MATCHES_TO_WIN);
+	ft_dprintf(1, "pos dia matches up: %d\n", (int)matches - 1);
+	return (matches >= MATCHES_TO_WIN);
 }
 
 bool	win_horizontal(long row, long col, t_data *data) {
 	int		color;
 	long	matches;
+	long	i;
 
 	color = data->grid[row][col];
 	matches = 1;
+	i = 1;
 	while (matches < MATCHES_TO_WIN
-			&& in_bound(row, col + matches, data)
-			&& data->grid[row][col + matches] == color) {
+			&& in_bound(row, col + i, data)
+			&& data->grid[row][col + i] == color) {
 				matches++;
-				ft_dprintf(1, "hor matches: %d\n", (int)matches);
+				i++;
 			}
+	ft_dprintf(1, "hor matches right: %d\n", (int)matches - 1);
+	i = 1;
 	while (matches < MATCHES_TO_WIN
-			&& in_bound(row, col - matches, data)
-			&& data->grid[row][col - matches] == color) {
+			&& in_bound(row, col - i, data)
+			&& data->grid[row][col - i] == color) {
 				matches++;
-				ft_dprintf(1, "hor matches: %d\n", (int)matches);
+				i++;
 			}
-	return (matches == MATCHES_TO_WIN);
+	ft_dprintf(1, "hor matches left: %d\n", (int)matches - 1);
+	return (matches >= MATCHES_TO_WIN);
 }
 
 bool	win_vertical(long row, long col, t_data *data) {
 	int		color;
 	long	matches;
+	long	i;
 
 	color = data->grid[row][col];
 	matches = 1;
+	i = 1;
 	while (matches < MATCHES_TO_WIN
-			&& in_bound(row + matches, col, data)
-			&& data->grid[row + matches][col] == color) {
+			&& in_bound(row + i, col, data)
+			&& data->grid[row + i][col] == color) {
 				matches++;
-				ft_dprintf(1, "vert matches: %d\n", (int)matches);
+				i++;
 			}
+	ft_dprintf(1, "vert matches down: %d\n", (int)matches - 1);
+	i = 1;
 	while (matches < MATCHES_TO_WIN
-			&& in_bound(row - matches, col, data)
-			&& data->grid[row - matches][col] == color) {
+			&& in_bound(row - i, col, data)
+			&& data->grid[row - i][col] == color) {
 				matches++;
-				ft_dprintf(1, "vert matches: %d\n", (int)matches);
+				i++;
+				ft_dprintf(1, "vert matches up: %d\n", (int)matches - 1);
 			}
-	return (matches == MATCHES_TO_WIN);
+	return (matches >= MATCHES_TO_WIN);
 }
 
 bool	check_cell(long row, long col, t_data *data) {
