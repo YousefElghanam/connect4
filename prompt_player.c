@@ -58,7 +58,7 @@ void	prompt_player(t_data *data) {
 			row = push_coin(col - 1, data);
 			if (row == -1)
 				continue ;
-			ft_dprintf(1, "Adding coin to cell [%d][%d]\n", (int)row, (int)col);
+			// ft_dprintf(1, "Adding coin to cell [%d][%d]\n", (int)row, (int)col);
 			if (check_cell(row, col - 1, data))
 				data->state = PLAYER_WIN;
 			else

@@ -1,7 +1,7 @@
 #ifndef CONNECT_4_H
 # define CONNECT_4_H
 
-# define DEBUG 1
+# define DEBUG 0
 # define MATCHES_TO_WIN 4
 # define ROW_MIN 6
 # define ROW_MAX 42
