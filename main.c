@@ -12,10 +12,7 @@ void	print_grid(t_data *data)
 	rows = 0;
 	cols = 0;
 	while (cols < data->col_count) {
-		if (cols > 8)
-			ft_dprintf(1, "%2ld ", cols + 1);
-		else
-			ft_dprintf(1, "% 2ld ", cols + 1);
+		ft_dprintf(1, "% 3ld", cols + 1);
 		cols++;
 	}
 	ft_dprintf(1, "\n");
