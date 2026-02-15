@@ -39,7 +39,7 @@ long	push_coin(long col, t_data *data) {
 		row--;
 	}
 	if (row == -1)
-		return (ft_dprintf(2, "Can't push, column is full\n"), true);
+		return (ft_dprintf(2, "Can't push, column is full\n"), -1);
 	// ft_printf(1, "detected empty row at %d\n", (int)row);
 	if (data->state == PLAYER_TURN)
 		data->grid[row][col] = BLUE;
