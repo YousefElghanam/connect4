@@ -162,7 +162,7 @@ long ai_turn(t_data *data) {
         current_score = 10000000;
       } else {
         data->state = !data->state;
-        current_score = -ai_turn2(data, 5, LONG_MIN + 1, LONG_MAX, -RED);
+        current_score = -ai_turn2(data, MAX_RECURSION_DEPTH, LONG_MIN + 1, LONG_MAX, -RED);
         data->state = !data->state;
       }
       
