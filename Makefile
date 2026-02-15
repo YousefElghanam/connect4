@@ -14,7 +14,7 @@ OBJ_DIR = objects/
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)%.o)
 
-DEPS = $(OBJS:.o=.d)
+DEPS = $(OBJ:.o=.d)
 
 LIBFT = libft/libft.a
 
@@ -22,6 +22,8 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+
+-include $(DEPS)
 
 $(OBJ_DIR)%.o: %.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -o $@ -c $<

@@ -8,6 +8,8 @@
 # define COL_MIN 7
 # define COL_MAX 42
 
+# define MAX_RECURSION_DEPTH 5
+
 # include "libft/includes/libft.h"
 # include <stdbool.h>
 # include <limits.h>
@@ -35,7 +37,6 @@ typedef struct	s_data
 	long	col_count;
 	int		**grid;
 	t_state	state;
-	bool	*columns_to_check;
 }	t_data;
 
 typedef struct s_ai_result {
