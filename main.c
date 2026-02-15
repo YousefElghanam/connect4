@@ -1,6 +1,8 @@
 #include "connect4.h"
 #include "libft/includes/libft.h"
 #include <stdatomic.h>
+#include <stdlib.h>
+#include <time.h>
 
 void	print_grid(t_data *data)
 {
@@ -60,12 +62,12 @@ int	main(int argc, char **argv)
 	t_data	data;
 	long	row;
 
+	srand(time(0));
 	if (!validate_args(argc, argv))
 		return (1);
 	if (!init_data(&data, argv))
 		return (1);
 	print_grid(&data);
-	data.state = PLAYER_TURN;
 	while (!game_over(&data)) {
 		if (data.state == PLAYER_TURN) {
 			prompt_player(&data);

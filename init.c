@@ -2,6 +2,7 @@
 #include "connect4.h"
 #include <stdlib.h>
 #include <time.h>
+#include <sys/time.h>
 
 static bool numeric_check(const char *arg);
 
@@ -29,9 +30,7 @@ bool	init_data(t_data *data, char **argv)
 			return (ft_dprintf(2, "Memory allocation failed\n"), false); 
 		}
 	}
-	srand(time(0));
 	data->state = rand() % 2;
-	ft_dprintf(1, "init state to %d\n", data->state);
 	return (true);
 }
 
