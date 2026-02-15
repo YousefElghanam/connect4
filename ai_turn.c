@@ -7,12 +7,6 @@
 static void check_columns(t_data *data, bool *columns, long col);
 static bool fill_columns_to_check(t_data *data, bool *columns);
 
-typedef enum e_ai_result_current {
-  PLAYER_WOULD_WIN,
-  AI_WOULD_WIN,
-  NONE
-}  t_ai_result_current;
-
 inline long __attribute__((always_inline)) evaluate_score(int *window, t_pos_state color) {
   int self_count = 0;
   int opponent_count = 0;
@@ -125,7 +119,7 @@ long ai_turn2(t_data *data, size_t depth, long alpha, long beta, t_pos_state col
     if (full) {
       return 0;
     }
-    return color * score(data, color);
+    return score(data, color);
   }
 
   long value = LONG_MIN;
@@ -174,10 +168,12 @@ long ai_turn(t_data *data) {
       
       long current_score;
       if (check_cell(row, i, data)) {
-        current_score = 10000000;
+        pop_coin(i, data);
+        free(columns);
+        return i;
       } else {
         data->state = !data->state;
-        current_score = -ai_turn2(data, data->recursion_depth, LONG_MIN + 1, LONG_MAX, -RED);
+        current_score = -ai_turn2(data, data->recursion_depth, LONG_MIN + 1, LONG_MAX, BLUE);
         data->state = !data->state;
       }
       
