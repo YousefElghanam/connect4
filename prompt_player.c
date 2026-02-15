@@ -6,13 +6,19 @@ static bool	valid_line(char *line) {
 		return (false);
 	}
 	for (size_t i = 0; i < ft_strlen(line) - 1; i++) {
-		if (!ft_isdigit(line[i]) && line[i] != 'x' && line[i] != ' ')
-			return (false);
+		if (DEBUG) {
+			if (!ft_isdigit(line[i]) && line[i] != 'x' && line[i] != ' ') {
+				return (false);
+			}
+		}
+		else {
+			if (!ft_isdigit(line[i])) {
+				return (false);
+			}
+		}
 	}
 	return (true);
 }
-
-#define DEBUG 1
 
 void	prompt_player(t_data *data) {
 	char	*line;

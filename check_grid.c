@@ -22,7 +22,7 @@ bool	win_neg_diagonal(long row, long col, t_data *data) {
 				matches++;
 				i++;
 			}
-	ft_dprintf(1, "neg dia matches down: %d\n", (int)matches - 1);
+	// ft_dprintf(1, "neg dia matches down: %d\n", (int)matches - 1);
 	i = 1;
 	while (matches < MATCHES_TO_WIN
 			&& in_bound(row - i, col - i, data)
@@ -30,7 +30,7 @@ bool	win_neg_diagonal(long row, long col, t_data *data) {
 				matches++;
 				i++;
 			}
-	ft_dprintf(1, "neg dia matches up: %d\n", (int)matches - 1);
+	// ft_dprintf(1, "neg dia matches up: %d\n", (int)matches - 1);
 	return (matches >= MATCHES_TO_WIN);
 }
 
@@ -48,7 +48,7 @@ bool	win_pos_diagonal(long row, long col, t_data *data) {
 				matches++;
 				i++;
 			}
-	ft_dprintf(1, "pos dia matches up: %d\n", (int)matches - 1);
+	// ft_dprintf(1, "pos dia matches up: %d\n", (int)matches - 1);
 	i = 1;
 	while (matches < MATCHES_TO_WIN
 			&& in_bound(row + i, col - i, data)
@@ -56,7 +56,7 @@ bool	win_pos_diagonal(long row, long col, t_data *data) {
 				matches++;
 				i++;
 			}
-	ft_dprintf(1, "pos dia matches up: %d\n", (int)matches - 1);
+	// ft_dprintf(1, "pos dia matches up: %d\n", (int)matches - 1);
 	return (matches >= MATCHES_TO_WIN);
 }
 
@@ -74,7 +74,7 @@ bool	win_horizontal(long row, long col, t_data *data) {
 				matches++;
 				i++;
 			}
-	ft_dprintf(1, "hor matches right: %d\n", (int)matches - 1);
+	// ft_dprintf(1, "hor matches right: %d\n", (int)matches - 1);
 	i = 1;
 	while (matches < MATCHES_TO_WIN
 			&& in_bound(row, col - i, data)
@@ -82,7 +82,7 @@ bool	win_horizontal(long row, long col, t_data *data) {
 				matches++;
 				i++;
 			}
-	ft_dprintf(1, "hor matches left: %d\n", (int)matches - 1);
+	// ft_dprintf(1, "hor matches left: %d\n", (int)matches - 1);
 	return (matches >= MATCHES_TO_WIN);
 }
 
@@ -100,14 +100,14 @@ bool	win_vertical(long row, long col, t_data *data) {
 				matches++;
 				i++;
 			}
-	ft_dprintf(1, "vert matches down: %d\n", (int)matches - 1);
+	// ft_dprintf(1, "vert matches down: %d\n", (int)matches - 1);
 	i = 1;
 	while (matches < MATCHES_TO_WIN
 			&& in_bound(row - i, col, data)
 			&& data->grid[row - i][col] == color) {
 				matches++;
 				i++;
-				ft_dprintf(1, "vert matches up: %d\n", (int)matches - 1);
+				// ft_dprintf(1, "vert matches up: %d\n", (int)matches - 1);
 			}
 	return (matches >= MATCHES_TO_WIN);
 }

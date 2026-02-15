@@ -1,2 +1,0 @@
-1. change check_cell to be more dynamic with left and right (replace check_left and check_right with one dynamic function)
-
